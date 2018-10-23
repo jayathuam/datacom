@@ -25,6 +25,7 @@ namespace DataCom
     public partial class MainWindow : MetroWindow
     {
         private GlobalData globalData;
+        private NewProject window;
         public MainWindow()
         {
             InitializeComponent();
@@ -65,7 +66,10 @@ namespace DataCom
 
         private void New_Click(object sender, RoutedEventArgs e)
         {
-            NewProject window = new NewProject();
+            if(window == null)
+            {
+                window = new NewProject();
+            }            
             window.Show();
         }
     }

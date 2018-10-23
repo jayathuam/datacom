@@ -7,7 +7,7 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:DataCom.otherWindows"
         mc:Ignorable="d"
-        Title="New Project" Height="500" Width="800" ResizeMode="NoResize" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
+        Title="New Project" Height="500" Width="800" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Topmost="True">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="433"/>
