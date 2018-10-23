@@ -1,0 +1,57 @@
+﻿<Controls:MetroWindow x:Class="DataCom.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:notifications="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
+        xmlns:local="clr-namespace:DataCom"
+        mc:Ignorable="d"
+        Title="DataCom" WindowStartupLocation="CenterScreen" WindowTransitionsEnabled="False" MinHeight="{Binding Source={x:Static SystemParameters.FullPrimaryScreenHeight}}"
+                      MinWidth="{Binding Source={x:Static SystemParameters.FullPrimaryScreenWidth}}"
+                     IsMaxRestoreButtonEnabled="False" Loaded="MetroWindow_Loaded" WindowState="Maximized" ResizeMode="CanMinimize" WindowStyle="None">
+    <Grid Background="#FFF3F3F3">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="703*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+          Grid.Column="0"
+          Background="#FF5F5E5E" />
+        
+        <notifications:NotificationArea x:Name="WindowArea" Position="TopRight" MaxItems="3"/>
+
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Device Info" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,8,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30" Grid.Row="0">
+            <iconPacks:FontAwesome Width="10" Height="10" Kind="InfoSolid" />
+        </Button>
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Write Configurations" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,38,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30">
+            <iconPacks:FontAwesome Width="10" Height="10" Kind="UploadSolid" />
+        </Button>
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Read Configurations" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,68,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333">
+            <iconPacks:FontAwesome Width="10" Height="10" Kind="MicrochipSolid" />
+        </Button>
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Save as" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,98,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333">
+            <iconPacks:Modern Width="10" Height="10" Kind="DiskUpload" />
+        </Button>
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Save" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,128,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333">
+            <iconPacks:FontAwesome Width="10" Height="10" Kind="SaveRegular" />
+        </Button>
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Open" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,158,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333">
+            <iconPacks:FontAwesome Width="10" Height="10" Kind="FolderOpenRegular" />
+        </Button>
+        <Button Command="{Binding EditDetailCommand}" ToolTip="New" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,188,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333" Click="New_Click">
+            <iconPacks:FontAwesome Width="10" Height="10" Kind="FolderRegular" />
+        </Button>
+
+        <Controls:DropDownButton Width="65" Height="30" Content="Data Com" DisplayMemberPath="Title" BorderThickness="0" Background="#FFEC4D4D" 
+                                 HorizontalAlignment="Left" FontSize="10" Margin="0,5">
+            <Controls:DropDownButton.Items>
+                <MenuItem Header="Port" Name="menuItmPort">                   
+                </MenuItem>
+            </Controls:DropDownButton.Items>
+        </Controls:DropDownButton>
+
+    </Grid>
+</Controls:MetroWindow>
