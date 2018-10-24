@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="DataCom.customUserControls.deviceInfo.DeviceInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DataCom.customUserControls.deviceInfo"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="400">
+    <Grid>
+        <Label x:Name="label" Content="Info 01" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="label_Copy" Content="Info 02" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="label_Copy1" Content="Info 03" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="label_Copy2" Content="Info 04" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="label_Copy3" Content="Info 05" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Foreground="White"/>
+        
+        <Label x:Name="label_Copy4" Content="detail 01" HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="label_Copy5" Content="detail 02" HorizontalAlignment="Left" Margin="160,36,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="label_Copy6" Content="detail 03" HorizontalAlignment="Left" Margin="160,62,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="label_Copy7" Content="detail 04" HorizontalAlignment="Left" Margin="160,88,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="label_Copy8" Content="detail 05" HorizontalAlignment="Left" Margin="160,114,0,0" VerticalAlignment="Top" Foreground="White"/>
+
+    </Grid>
+</UserControl>

@@ -7,6 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:notifications="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
         xmlns:local="clr-namespace:DataCom"
+        xmlns:deviceInfo="clr-namespace:DataCom.customUserControls.deviceInfo"
         mc:Ignorable="d"
         Title="DataCom" WindowStartupLocation="CenterScreen" WindowTransitionsEnabled="False" MinHeight="{Binding Source={x:Static SystemParameters.FullPrimaryScreenHeight}}"
                       MinWidth="{Binding Source={x:Static SystemParameters.FullPrimaryScreenWidth}}"
@@ -23,7 +24,7 @@
         
         <notifications:NotificationArea x:Name="WindowArea" Position="TopRight" MaxItems="3"/>
 
-        <Button Command="{Binding EditDetailCommand}" ToolTip="Device Info" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,8,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30" Grid.Row="0">
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Device Info" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,8,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30" Grid.Row="0" Name="btnDeviceInfo" Click="btnDeviceInfo_Click">
             <iconPacks:FontAwesome Width="10" Height="10" Kind="InfoSolid" />
         </Button>
         <Button Command="{Binding EditDetailCommand}" ToolTip="Write Configurations" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,38,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30">
@@ -54,4 +55,14 @@
         </Controls:DropDownButton>
 
     </Grid>
+    
+    <!--flyout for device information-->
+    <Controls:MetroWindow.Flyouts>
+        <Controls:FlyoutsControl>
+            <Controls:Flyout Header="Device Information" Position="Right" Width="600" Name="deviceInfoFlyout" Opacity="0.9" >
+                <deviceInfo:DeviceInfo x:Name="deviceInfoUserControl"></deviceInfo:DeviceInfo>
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+    </Controls:MetroWindow.Flyouts>
 </Controls:MetroWindow>
+

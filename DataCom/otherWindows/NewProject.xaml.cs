@@ -22,6 +22,8 @@ namespace DataCom.otherWindows
     /// </summary>
     public partial class NewProject : MetroWindow
     {
+        private SaveFileDialog openFileDialog;
+
         public NewProject()
         {
             InitializeComponent();
@@ -29,10 +31,14 @@ namespace DataCom.otherWindows
 
         private void btnBrows_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if(openFileDialog == null)
+            {
+                openFileDialog = new SaveFileDialog();
+            }            
             openFileDialog.Filter = "DataCom Files (*.dcom)|*.dcom";
             if (openFileDialog.ShowDialog() == true)
             {
+                File.WriteAllText(openFileDialog.FileName, "");//todo: add the template string inside this param
                 txtFile.Text = openFileDialog.FileName;
             }
                 
@@ -52,6 +58,6 @@ namespace DataCom.otherWindows
             Page1.Visibility = Visibility.Visible;
             btnBack.IsEnabled = true;
             btnNext.Content = "done";
-        }
+        }        
     }
 }

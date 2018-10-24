@@ -66,11 +66,13 @@ namespace DataCom
 
         private void New_Click(object sender, RoutedEventArgs e)
         {
-            if(window == null)
-            {
-                window = new NewProject();
-            }            
+            window = new NewProject();                       
             window.Show();
+        }
+
+        private void btnDeviceInfo_Click(object sender, RoutedEventArgs e)
+        {
+            deviceInfoFlyout.IsOpen = true;
         }
     }
 }
