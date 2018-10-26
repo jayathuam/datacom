@@ -66,13 +66,18 @@ namespace DataCom
 
         private void New_Click(object sender, RoutedEventArgs e)
         {
-            window = new NewProject();                       
+            window = new NewProject(globalData);                       
             window.Show();
         }
 
         private void btnDeviceInfo_Click(object sender, RoutedEventArgs e)
         {
             deviceInfoFlyout.IsOpen = true;
+        }
+
+        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

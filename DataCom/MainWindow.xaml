@@ -11,7 +11,7 @@
         mc:Ignorable="d"
         Title="DataCom" WindowStartupLocation="CenterScreen" WindowTransitionsEnabled="False" MinHeight="{Binding Source={x:Static SystemParameters.FullPrimaryScreenHeight}}"
                       MinWidth="{Binding Source={x:Static SystemParameters.FullPrimaryScreenWidth}}"
-                     IsMaxRestoreButtonEnabled="False" Loaded="MetroWindow_Loaded" WindowState="Maximized" ResizeMode="CanMinimize" WindowStyle="None">
+                     IsMaxRestoreButtonEnabled="False" Loaded="MetroWindow_Loaded" WindowState="Maximized" ResizeMode="CanMinimize" WindowStyle="None" Closing="MetroWindow_Closing">
     <Grid Background="#FFF3F3F3">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>

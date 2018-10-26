@@ -121,6 +121,9 @@
       <DependentUpon>DeviceInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="globalDataStore\GlobalData.cs" />
+    <Compile Include="modals\DataComModal.cs" />
+    <Compile Include="modals\ECU.cs" />
+    <Compile Include="modals\KeyPad.cs" />
     <Compile Include="otherWindows\NewProject.xaml.cs">
       <DependentUpon>NewProject.xaml</DependentUpon>
     </Compile>

@@ -21,8 +21,8 @@
             <iconPacks:PackIconMaterial Kind="Keyboard" Width="Auto" Height="100" Margin="12,166,672,0" HorizontalAlignment="Stretch" />
             <Label x:Name="label" Content="Number of ECUs" HorizontalAlignment="Left" Margin="12,117,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.961,-5.673"/>
             <Label x:Name="label_Copy" Content="Number of Key pads" HorizontalAlignment="Left" Margin="12,262,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.961,-5.673"/>
-            <Controls:NumericUpDown Minimum = "1" Maximum = "100" Interval = "1" Width="100" Height="20" Margin="170,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="1" HasDecimals="False"/>
-            <Controls:NumericUpDown Minimum = "0" Maximum = "100" Interval = "1" Width="100" Height="20" Margin="170,204,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="1" HasDecimals="False"/>
+            <Controls:NumericUpDown Name="numOfEcus" Minimum = "1" Maximum = "100" Interval = "1" Width="100" Height="20" Margin="170,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="1" HasDecimals="False"/>
+            <Controls:NumericUpDown Name="numOfKeyPads" Minimum = "0" Maximum = "100" Interval = "1" Width="100" Height="20" Margin="170,204,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="1" HasDecimals="False"/>
         </Grid>
 
         <Grid Name="Page1" Grid.Row="0" Margin="10,10,0,0" Visibility="Hidden">
@@ -38,7 +38,7 @@
             <Label x:Name="label1_Copy2" Content="Vehicle" HorizontalAlignment="Left" Margin="10,164,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.542,2.154"/>
             <Label x:Name="label1_Copy3" Content="Version" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.542,2.154"/>
             <Label x:Name="label1_Copy4" Content="License" HorizontalAlignment="Left" Margin="10,226,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.542,2.154"/>
-            <TextBox x:Name="txtFile" HorizontalAlignment="Left" Height="23" Margin="168,257,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="474"/>
+            <TextBox x:Name="txtFile" HorizontalAlignment="Left" Height="23" Margin="168,257,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="474" IsEnabled="False"/>
             <Label x:Name="label1_Copy5" Content="File Name" HorizontalAlignment="Left" Margin="10,257,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.542,2.154"/>
             <Button x:Name="btnBrows" Content="Brows" HorizontalAlignment="Left" Margin="662,257,0,0" VerticalAlignment="Top" Width="69" Height="26" Style="{StaticResource SquareButtonStyle}" Click="btnBrows_Click"/>
         </Grid>

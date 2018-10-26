@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using DataCom.modals;
+using NLog;
 using Notifications.Wpf;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,9 @@ namespace DataCom.globalDataStore
     public class GlobalData
     {
         private NotificationManager notificationManager;
-        public string serialPort {get; set;}
+        public string serialPort { get; set; }
+        public string filePath { get; set; }
+        public DataComModal dataComModal { get; set; }
         public GlobalData()
         {
             var config = new NLog.Config.LoggingConfiguration();
@@ -21,7 +24,7 @@ namespace DataCom.globalDataStore
             config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
             NLog.LogManager.Configuration = config;
 
-            notificationManager = new NotificationManager();
+            notificationManager = new NotificationManager();            
         }
 
         public void showInfo(string title, string msg)
