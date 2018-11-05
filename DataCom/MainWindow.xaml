@@ -8,11 +8,16 @@
         xmlns:notifications="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
         xmlns:local="clr-namespace:DataCom"
         xmlns:deviceInfo="clr-namespace:DataCom.customUserControls.deviceInfo"
+        xmlns:tree="clr-namespace:DataCom.customUserControls.tree"
         mc:Ignorable="d"
         Title="DataCom" WindowStartupLocation="CenterScreen" WindowTransitionsEnabled="False" MinHeight="{Binding Source={x:Static SystemParameters.FullPrimaryScreenHeight}}"
                       MinWidth="{Binding Source={x:Static SystemParameters.FullPrimaryScreenWidth}}"
                      IsMaxRestoreButtonEnabled="False" Loaded="MetroWindow_Loaded" WindowState="Maximized" ResizeMode="CanMinimize" WindowStyle="None" Closing="MetroWindow_Closing">
     <Grid Background="#FFF3F3F3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="51*"/>
+            <ColumnDefinition Width="205*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="703*"/>
@@ -20,42 +25,45 @@
 
         <Grid Grid.Row="0"
           Grid.Column="0"
-          Background="#FF5F5E5E" />
-        
-        <notifications:NotificationArea x:Name="WindowArea" Position="TopRight" MaxItems="3"/>
+          Background="#FF5F5E5E" Grid.ColumnSpan="2" />
 
-        <Button Command="{Binding EditDetailCommand}" ToolTip="Device Info" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,8,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30" Grid.Row="0" Name="btnDeviceInfo" Click="btnDeviceInfo_Click">
+        <tree:TreeUI x:Name="treeview" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2"></tree:TreeUI>
+
+        <notifications:NotificationArea x:Name="WindowArea" Position="TopRight" MaxItems="3" Grid.ColumnSpan="2"/>
+
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Device Info" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,8,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30" Grid.Row="0" Name="btnDeviceInfo" Click="btnDeviceInfo_Click" Grid.Column="1">
             <iconPacks:FontAwesome Width="10" Height="10" Kind="InfoSolid" />
         </Button>
-        <Button Command="{Binding EditDetailCommand}" ToolTip="Write Configurations" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,38,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30">
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Write Configurations" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,38,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" Grid.Column="1">
             <iconPacks:FontAwesome Width="10" Height="10" Kind="UploadSolid" />
         </Button>
-        <Button Command="{Binding EditDetailCommand}" ToolTip="Read Configurations" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,68,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333">
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Read Configurations" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,68,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333" Grid.Column="1">
             <iconPacks:FontAwesome Width="10" Height="10" Kind="MicrochipSolid" />
         </Button>
-        <Button Command="{Binding EditDetailCommand}" ToolTip="Save as" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,98,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333">
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Save as" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,98,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333" Grid.Column="1">
             <iconPacks:Modern Width="10" Height="10" Kind="DiskUpload" />
         </Button>
-        <Button Command="{Binding EditDetailCommand}" ToolTip="Save" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,128,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333">
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Save" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,128,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333" Grid.Column="1">
             <iconPacks:FontAwesome Width="10" Height="10" Kind="SaveRegular" />
         </Button>
-        <Button Command="{Binding EditDetailCommand}" ToolTip="Open" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,158,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333">
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Open" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,158,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333" Grid.Column="1">
             <iconPacks:FontAwesome Width="10" Height="10" Kind="FolderOpenRegular" />
         </Button>
-        <Button Command="{Binding EditDetailCommand}" ToolTip="New" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,188,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333" Click="New_Click">
+        <Button Command="{Binding EditDetailCommand}" ToolTip="New" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,188,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333" Click="New_Click" Grid.Column="1">
             <iconPacks:FontAwesome Width="10" Height="10" Kind="FolderRegular" />
         </Button>
 
         <Controls:DropDownButton Width="65" Height="30" Content="Data Com" DisplayMemberPath="Title" BorderThickness="0" Background="#FFEC4D4D" 
                                  HorizontalAlignment="Left" FontSize="10" Margin="0,5">
             <Controls:DropDownButton.Items>
-                <MenuItem Header="Port" Name="menuItmPort">                   
+                <MenuItem Header="Port" Name="menuItmPort">
                 </MenuItem>
             </Controls:DropDownButton.Items>
         </Controls:DropDownButton>
+        <StackPanel Name="controPanel" HorizontalAlignment="Left" Height="auto" Margin="0" Grid.Row="1" VerticalAlignment="Top" Width="auto" Grid.Column="1"/>
 
     </Grid>
-    
+
     <!--flyout for device information-->
     <Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl>

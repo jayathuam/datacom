@@ -117,17 +117,65 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="customUserControls\customConfigs\AnalogInputUI.xaml.cs">
+      <DependentUpon>AnalogInputUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="customUserControls\customConfigs\ExternalInputUI.xaml.cs">
+      <DependentUpon>ExternalInputUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="customUserControls\customConfigs\LoadShadingUI.xaml.cs">
+      <DependentUpon>LoadShadingUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="customUserControls\customConfigs\NegativeOutputUI.xaml.cs">
+      <DependentUpon>NegativeOutputUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="customUserControls\customConfigs\PositiveOutputUI.xaml.cs">
+      <DependentUpon>PositiveOutputUI.xaml</DependentUpon>
+    </Compile>
     <Compile Include="customUserControls\deviceInfo\DeviceInfo.xaml.cs">
       <DependentUpon>DeviceInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="globalDataStore\GlobalData.cs" />
+    <Compile Include="modals\AnalogInput.cs" />
+    <Compile Include="modals\CombineInputs.cs" />
     <Compile Include="modals\DataComModal.cs" />
     <Compile Include="modals\ECU.cs" />
+    <Compile Include="modals\enums\Definitions.cs" />
+    <Compile Include="modals\Events.cs" />
+    <Compile Include="modals\ExternalInput.cs" />
+    <Compile Include="modals\Key.cs" />
     <Compile Include="modals\KeyPad.cs" />
+    <Compile Include="modals\LoadShading.cs" />
+    <Compile Include="modals\NegativeOutput.cs" />
+    <Compile Include="modals\PositiveOutput.cs" />
+    <Compile Include="modals\PowerManagement.cs" />
     <Compile Include="otherWindows\NewProject.xaml.cs">
       <DependentUpon>NewProject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="customUserControls\tree\TreeUI.xaml.cs">
+      <DependentUpon>TreeUI.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SerialCommunication\Serial.cs" />
+    <Page Include="customUserControls\customConfigs\AnalogInputUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="customUserControls\customConfigs\ExternalInputUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="customUserControls\customConfigs\LoadShadingUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="customUserControls\customConfigs\NegativeOutputUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="customUserControls\customConfigs\PositiveOutputUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="customUserControls\deviceInfo\DeviceInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -145,6 +193,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="otherWindows\NewProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="customUserControls\tree\TreeUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

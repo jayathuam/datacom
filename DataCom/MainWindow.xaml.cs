@@ -51,10 +51,10 @@ namespace DataCom
         {
             foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
             {
-                MenuItem temp = new MenuItem();                
+                MenuItem temp = new MenuItem();
                 temp.Header = s;
                 temp.Click += new RoutedEventHandler(item_Click);
-                menuItmPort.Items.Add(temp);                
+                menuItmPort.Items.Add(temp);
             }
         }
 
@@ -66,7 +66,8 @@ namespace DataCom
 
         private void New_Click(object sender, RoutedEventArgs e)
         {
-            window = new NewProject(globalData);                       
+            globalData.filePath = null;
+            window = new NewProject(globalData, this);
             window.Show();
         }
 
@@ -78,6 +79,17 @@ namespace DataCom
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        public void populateTree()
+        {
+            treeview.init(globalData, this);
+        }
+
+        public void addChildToPanel(UIElement item)
+        {
+            controPanel.Children.Clear();
+            controPanel.Children.Add(item);
         }
     }
 }

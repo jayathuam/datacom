@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="DataCom.customUserControls.customConfigs.PositiveOutputUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DataCom.customUserControls.customConfigs"
+             mc:Ignorable="d" 
+             Height="auto" Width="700">
+    <Grid>
+        <Label x:Name="label" Content="Activator" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="activatorCmb" HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top" Width="166"/>
+        <Label x:Name="label_Copy" Content="Active Time" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="activeTimeTxt" HorizontalAlignment="Left" Height="23" Margin="189,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
+        <Label x:Name="label_Copy1" Content="Seconds (0 always on)" HorizontalAlignment="Left" Margin="477,41,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy2" Content="Condition Source" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="conditionSourceCmb" HorizontalAlignment="Left" Margin="189,72,0,0" VerticalAlignment="Top" Width="166"/>
+        <Label x:Name="label_Copy3" Content="Turn On When Source is" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="sourceOnCmb" HorizontalAlignment="Left" Margin="189,103,0,0" VerticalAlignment="Top" Width="166"/>
+        <Label x:Name="label_Copy4" Content="Turn Off When Source is" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="sourceOffCmb" HorizontalAlignment="Left" Margin="189,134,0,0" VerticalAlignment="Top" Width="166"/>
+        <Label x:Name="label_Copy5" Content="Voltage Monitoring" HorizontalAlignment="Left" Margin="10,179,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy6" Content="Voltage Source" HorizontalAlignment="Left" Margin="9,221,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="voltageSourceCmb" HorizontalAlignment="Left" Margin="189,221,0,0" VerticalAlignment="Top" Width="166"/>
+        <Label x:Name="label_Copy7" Content="Minimum Voltage" HorizontalAlignment="Left" Margin="10,252,0,0" VerticalAlignment="Top"/>
+        <Slider x:Name="minVoltSlider" HorizontalAlignment="Left" Margin="189,262,0,0" VerticalAlignment="Top" Width="271"/>
+        <Label x:Name="minVoltLbl" Content="0 V" HorizontalAlignment="Left" Margin="513,252,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy8" Content="Maximum Voltage" HorizontalAlignment="Left" Margin="10,283,0,0" VerticalAlignment="Top"/>
+        <Slider x:Name="maxVoltSlider" HorizontalAlignment="Left" Margin="189,293,0,0" VerticalAlignment="Top" Width="271"/>
+        <Label x:Name="maxVoltLbl" Content="0 V" HorizontalAlignment="Left" Margin="513,283,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy9" Content="LED Settings for Under Voltage" HorizontalAlignment="Left" Margin="10,314,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy10" Content="Frequency" HorizontalAlignment="Left" Margin="12,345,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="voltageSourceCmb_Copy" HorizontalAlignment="Left" Margin="189,345,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.59,5.462"/>
+        <Label x:Name="label_Copy11" Content="Blink" HorizontalAlignment="Left" Margin="12,376,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="voltageSourceCmb_Copy1" HorizontalAlignment="Left" Margin="189,376,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.59,5.462"/>
+        <Label x:Name="label_Copy12" Content="Brightness" HorizontalAlignment="Left" Margin="12,407,0,0" VerticalAlignment="Top"/>
+        <Slider x:Name="maxVoltSlider_Copy" HorizontalAlignment="Left" Margin="189,417,0,0" VerticalAlignment="Top" Width="271"/>
+        <Label x:Name="maxVoltLbl_Copy" Content="0" HorizontalAlignment="Left" Margin="513,407,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy13" Content="LED Settings for Over Voltage" HorizontalAlignment="Left" Margin="9,438,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy14" Content="Frequency" HorizontalAlignment="Left" Margin="12,469,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="voltageSourceCmb_Copy2" HorizontalAlignment="Left" Margin="189,469,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.59,5.462"/>
+        <Label x:Name="label_Copy15" Content="Blink" HorizontalAlignment="Left" Margin="12,500,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="voltageSourceCmb_Copy3" HorizontalAlignment="Left" Margin="189,500,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.59,5.462"/>
+        <Label x:Name="label_Copy16" Content="Brightness" HorizontalAlignment="Left" Margin="12,531,0,0" VerticalAlignment="Top"/>
+        <Slider x:Name="maxVoltSlider_Copy1" HorizontalAlignment="Left" Margin="189,541,0,0" VerticalAlignment="Top" Width="271"/>
+        <Label x:Name="maxVoltLbl_Copy1" Content="0" HorizontalAlignment="Left" Margin="513,531,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy17" Content="Current Monitoring" HorizontalAlignment="Left" Margin="12,578,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy18" Content="Minimum Current" HorizontalAlignment="Left" Margin="9,617,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="activeTimeTxt_Copy" HorizontalAlignment="Left" Height="23" Margin="189,617,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
+        <Label x:Name="label_Copy19" Content="A" HorizontalAlignment="Left" Margin="513,617,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy20" Content="Maximum Current" HorizontalAlignment="Left" Margin="10,648,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="activeTimeTxt_Copy1" HorizontalAlignment="Left" Height="23" Margin="189,648,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
+        <Label x:Name="label_Copy21" Content="A" HorizontalAlignment="Left" Margin="513,648,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy22" Content="LED Settings for Under Current" HorizontalAlignment="Left" Margin="10,679,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy23" Content="Frequency" HorizontalAlignment="Left" Margin="12,710,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="voltageSourceCmb_Copy4" HorizontalAlignment="Left" Margin="189,710,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.59,5.462"/>
+        <Label x:Name="label_Copy24" Content="Blink" HorizontalAlignment="Left" Margin="12,741,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="voltageSourceCmb_Copy5" HorizontalAlignment="Left" Margin="189,741,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.59,5.462"/>
+        <Label x:Name="label_Copy25" Content="Brightness" HorizontalAlignment="Left" Margin="12,772,0,0" VerticalAlignment="Top"/>
+        <Slider x:Name="maxVoltSlider_Copy2" HorizontalAlignment="Left" Margin="189,782,0,0" VerticalAlignment="Top" Width="271"/>
+        <Label x:Name="maxVoltLbl_Copy2" Content="0" HorizontalAlignment="Left" Margin="513,772,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy26" Content="LED Settings for Over Current" HorizontalAlignment="Left" Margin="12,803,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy27" Content="Frequency" HorizontalAlignment="Left" Margin="12,834,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="voltageSourceCmb_Copy6" HorizontalAlignment="Left" Margin="189,834,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.59,5.462"/>
+        <Label x:Name="label_Copy28" Content="Blink" HorizontalAlignment="Left" Margin="12,865,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="voltageSourceCmb_Copy7" HorizontalAlignment="Left" Margin="189,865,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.59,5.462"/>
+        <Label x:Name="label_Copy29" Content="Brightness" HorizontalAlignment="Left" Margin="12,896,0,0" VerticalAlignment="Top"/>
+        <Slider x:Name="maxVoltSlider_Copy3" HorizontalAlignment="Left" Margin="189,906,0,0" VerticalAlignment="Top" Width="271"/>
+        <Label x:Name="maxVoltLbl_Copy3" Content="0" HorizontalAlignment="Left" Margin="513,896,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy30" Content="Load Shading" HorizontalAlignment="Left" Margin="9,943,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="voltageSourceCmb_Copy8" HorizontalAlignment="Left" Margin="189,943,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.59,5.462"/>
+    </Grid>
+</UserControl>

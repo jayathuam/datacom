@@ -17,6 +17,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static DataCom.modals.enums.Definitions;
 
 namespace DataCom.otherWindows
 {
@@ -27,11 +28,13 @@ namespace DataCom.otherWindows
     {
         private SaveFileDialog openFileDialog;
         private GlobalData globalData;
+        private MainWindow mainWindow;
 
-        public NewProject(GlobalData globalData)
+        public NewProject(GlobalData globalData,MainWindow mainWindow)
         {
             InitializeComponent();
             this.globalData = globalData;
+            this.mainWindow = mainWindow;
         }
 
         private void btnBrows_Click(object sender, RoutedEventArgs e)
@@ -71,19 +74,15 @@ namespace DataCom.otherWindows
                 dataModals.version = txtVersion.Text;
 
                 List<ECU> ecus = new List<ECU>();
+                ecus.AddRange(Enumerable.Repeat(new ECU(ECU_TYPE.type_1), (int) numOfEcus_1.Value));
+                ecus.AddRange(Enumerable.Repeat(new ECU(ECU_TYPE.type_2), (int)numOfEcus_2.Value));
+                ecus.AddRange(Enumerable.Repeat(new ECU(ECU_TYPE.type_3), (int)numOfEcus_3.Value));
+                ecus.AddRange(Enumerable.Repeat(new ECU(ECU_TYPE.type_4), (int)numOfEcus_4.Value));
+
                 List<KeyPad> keyPads = new List<KeyPad>();
-
-                for(int i=0; i<(int) numOfEcus.Value; i++)
-                {
-                    ECU ecu = new ECU();
-                    ecus.Add(ecu);                        
-                }
-
-                for (int i = 0; i < (int)numOfKeyPads.Value; i++)
-                {
-                    KeyPad ecu = new KeyPad();
-                    keyPads.Add(ecu);
-                }
+                keyPads.AddRange(Enumerable.Repeat(new KeyPad(KEYPAD_TYPE.type_1), (int)numOfKeyPads_1.Value));
+                keyPads.AddRange(Enumerable.Repeat(new KeyPad(KEYPAD_TYPE.type_2), (int)numOfKeyPads_2.Value));
+                keyPads.AddRange(Enumerable.Repeat(new KeyPad(KEYPAD_TYPE.type_3), (int)numOfKeyPads_3.Value));                
 
                 dataModals.ecus = ecus;
                 dataModals.keyPads = keyPads;
@@ -96,7 +95,9 @@ namespace DataCom.otherWindows
                 }
                 else
                 {
-                    File.WriteAllText(openFileDialog.FileName, file);
+                    File.WriteAllText(globalData.filePath, file);
+                    globalData.showSuccess("Success", "Project created successfully.");
+                    mainWindow.populateTree();
                     this.Close();
                 }
                 
@@ -107,6 +108,10 @@ namespace DataCom.otherWindows
                 Page1.Visibility = Visibility.Visible;
                 btnBack.IsEnabled = true;
                 btnNext.Content = "done";
+                if(globalData.filePath != null && !globalData.filePath.Equals(""))
+                {
+                    txtFile.Text = globalData.filePath;
+                }
             }
             
         }        

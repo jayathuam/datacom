@@ -7,7 +7,7 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:DataCom.otherWindows"
         mc:Ignorable="d"
-        Title="New Project" Height="500" Width="800" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Topmost="True">
+        Title="New Project" Height="500" Width="800" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Topmost="True" IsMaxRestoreButtonEnabled="False" IsMinButtonEnabled="False">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="433"/>
@@ -16,13 +16,25 @@
         <Button x:Name="btnNext" Content="Next" Margin="0,0,10,9" Grid.Row="1" Height="27" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Style="{StaticResource AccentedSquareButtonStyle}" Click="btnNext_Click"/>
         <Button x:Name="btnBack" Content="Back" Margin="0,0,90,9" Grid.Row="1" Height="27" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Style="{StaticResource AccentedSquareButtonStyle}" Click="btnBack_Click"/>
 
-        <Grid Name="Page0" Grid.Row="0" Margin="10,10,0,0">
-            <iconPacks:PackIconMaterial Kind="Chip" Width="Auto" Height="100" Margin="12,12,672,0" HorizontalAlignment="Stretch" />
-            <iconPacks:PackIconMaterial Kind="Keyboard" Width="Auto" Height="100" Margin="12,166,672,0" HorizontalAlignment="Stretch" />
-            <Label x:Name="label" Content="Number of ECUs" HorizontalAlignment="Left" Margin="12,117,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.961,-5.673"/>
-            <Label x:Name="label_Copy" Content="Number of Key pads" HorizontalAlignment="Left" Margin="12,262,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.961,-5.673"/>
-            <Controls:NumericUpDown Name="numOfEcus" Minimum = "1" Maximum = "100" Interval = "1" Width="100" Height="20" Margin="170,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="1" HasDecimals="False"/>
-            <Controls:NumericUpDown Name="numOfKeyPads" Minimum = "0" Maximum = "100" Interval = "1" Width="100" Height="20" Margin="170,204,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="1" HasDecimals="False"/>
+        <Grid Name="Page0" Grid.Row="0" Margin="9,10,1,0">
+            <iconPacks:PackIconMaterial Kind="Chip" Width="200" Height="Auto" HorizontalAlignment="Left" />
+            <iconPacks:PackIconMaterial Kind="Keyboard" Width="200" Height="Auto" Margin="0,217,0,0" HorizontalAlignment="Left" />
+            <Label x:Name="label" Content="Number of ECUs" HorizontalAlignment="Left" Margin="56,183,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.961,-5.673"/>
+            <Label x:Name="label_Copy" Content="Number of Key pads" HorizontalAlignment="Left" Margin="50,363,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.961,-5.673"/>
+            <Controls:NumericUpDown Name="numOfEcus_1" Minimum = "0" Maximum = "100" Interval = "1" Width="100" Height="20" Margin="446,31,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="0" HasDecimals="False"/>
+            <Controls:NumericUpDown Name="numOfKeyPads_1" Minimum = "0" Maximum = "100" Interval = "1" Width="100" Height="20" Margin="446,244,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="0" HasDecimals="False"/>
+            <Label x:Name="label_Copy1" Content="Type 1" HorizontalAlignment="Left" Margin="260,31,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.961,-5.673"/>
+            <Label x:Name="label_Copy2" Content="Type 2" HorizontalAlignment="Left" Margin="260,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.961,-5.673"/>
+            <Label x:Name="label_Copy3" Content="Type 3" HorizontalAlignment="Left" Margin="260,93,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.961,-5.673"/>
+            <Label x:Name="label_Copy4" Content="Type 4" HorizontalAlignment="Left" Margin="260,124,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.961,-5.673"/>
+            <Controls:NumericUpDown x:Name="numOfEcus_2" Minimum = "0" Maximum = "100" Interval = "1" Width="100" Height="20" Margin="446,62,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="0" HasDecimals="False"/>
+            <Controls:NumericUpDown x:Name="numOfEcus_3" Minimum = "0" Maximum = "100" Interval = "1" Width="100" Height="20" Margin="446,93,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="0" HasDecimals="False"/>
+            <Controls:NumericUpDown x:Name="numOfEcus_4" Minimum = "0" Maximum = "100" Interval = "1" Width="100" Height="20" Margin="446,124,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="0" HasDecimals="False"/>
+            <Label x:Name="label_Copy5" Content="6 Button Keypad" HorizontalAlignment="Left" Margin="260,244,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.961,-5.673"/>
+            <Label x:Name="label_Copy6" Content="8 Button Keypad" HorizontalAlignment="Left" Margin="260,275,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.961,-5.673"/>
+            <Label x:Name="label_Copy7" Content="10 Button Keypad" HorizontalAlignment="Left" Margin="260,306,0,0" VerticalAlignment="Top" RenderTransformOrigin="-6.961,-5.673"/>
+            <Controls:NumericUpDown x:Name="numOfKeyPads_2" Minimum = "0" Maximum = "100" Interval = "1" Width="100" Height="20" Margin="446,275,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="0" HasDecimals="False"/>
+            <Controls:NumericUpDown x:Name="numOfKeyPads_3" Minimum = "0" Maximum = "100" Interval = "1" Width="100" Height="20" Margin="446,306,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="0" HasDecimals="False"/>
         </Grid>
 
         <Grid Name="Page1" Grid.Row="0" Margin="10,10,0,0" Visibility="Hidden">

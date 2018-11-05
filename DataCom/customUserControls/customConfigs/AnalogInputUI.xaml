@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="DataCom.customUserControls.customConfigs.AnalogInputUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DataCom.customUserControls.customConfigs"
+             mc:Ignorable="d" 
+             Height="auto" Width="700">
+    <Grid>
+        <Label x:Name="label" Content="Minimum Voltage" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="Maximum Voltage" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1_Copy" Content="Target Action" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+        <Slider x:Name="minVoltageSlider" HorizontalAlignment="Left" Margin="189,20,0,0" VerticalAlignment="Top" Width="341"/>
+        <Slider x:Name="maxVoltageSlider" HorizontalAlignment="Left" Margin="189,51,0,0" VerticalAlignment="Top" Width="341"/>
+        <Label x:Name="minLbl" Content="0" HorizontalAlignment="Left" Margin="607,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="maxLbl" Content="0" HorizontalAlignment="Left" Margin="607,41,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="targetActionCmb" HorizontalAlignment="Left" Margin="189,72,0,0" VerticalAlignment="Top" Width="166"/>
+
+    </Grid>
+</UserControl>
