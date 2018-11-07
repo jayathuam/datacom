@@ -91,5 +91,10 @@ namespace DataCom
             controPanel.Children.Clear();
             controPanel.Children.Add(item);
         }
+
+        public void clearPanel()
+        {
+            controPanel.Children.Clear();            
+        }
     }
 }

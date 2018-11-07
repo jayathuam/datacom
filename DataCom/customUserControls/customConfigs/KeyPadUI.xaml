@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="DataCom.customUserControls.customConfigs.KeyPadUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DataCom.customUserControls.customConfigs"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d" 
+             Width="auto" Height="auto">
+    <Grid>
+        <Label x:Name="label" Content="UUID" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="Number of Buttons" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1_Copy" Content="Short Address" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="numOfBtnLbl" Content="0" HorizontalAlignment="Left" Margin="189,41,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="uuidLbl" Content="0" HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="shortAddressTxt" HorizontalAlignment="Left" Height="23" Margin="189,72,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="198"/>
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Update short address" Style="{DynamicResource MetroCircleButtonStyle}" Margin="409,70,0,0" BorderBrush="Black" Foreground="Black" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Left" Width="30" RenderTransformOrigin="0.133,0.333" Click="shortAddressUpdate_Click">
+            <iconPacks:FontAwesome Width="10" Height="10" Kind="UploadSolid" />
+        </Button>
+    </Grid>
+</UserControl>

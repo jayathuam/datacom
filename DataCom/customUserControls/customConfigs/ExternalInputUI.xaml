@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DataCom.customUserControls.customConfigs"
              mc:Ignorable="d" 
-             Height="auto" Width="700">
+             Height="auto" Width="auto">
     <Grid>
         <Label x:Name="label" Content="Configuration" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>       
         <Label x:Name="label1_Copy" Content="Target Action" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>

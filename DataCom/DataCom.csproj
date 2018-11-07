@@ -120,8 +120,20 @@
     <Compile Include="customUserControls\customConfigs\AnalogInputUI.xaml.cs">
       <DependentUpon>AnalogInputUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="customUserControls\customConfigs\ButtonUI.xaml.cs">
+      <DependentUpon>ButtonUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="customUserControls\customConfigs\CombineInputUI.xaml.cs">
+      <DependentUpon>CombineInputUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="customUserControls\customConfigs\EcuUI.xaml.cs">
+      <DependentUpon>EcuUI.xaml</DependentUpon>
+    </Compile>
     <Compile Include="customUserControls\customConfigs\ExternalInputUI.xaml.cs">
       <DependentUpon>ExternalInputUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="customUserControls\customConfigs\KeyPadUI.xaml.cs">
+      <DependentUpon>KeyPadUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="customUserControls\customConfigs\LoadShadingUI.xaml.cs">
       <DependentUpon>LoadShadingUI.xaml</DependentUpon>
@@ -160,7 +172,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="customUserControls\customConfigs\ButtonUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="customUserControls\customConfigs\CombineInputUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="customUserControls\customConfigs\EcuUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="customUserControls\customConfigs\ExternalInputUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="customUserControls\customConfigs\KeyPadUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

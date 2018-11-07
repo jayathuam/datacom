@@ -60,6 +60,30 @@ namespace DataCom.customUserControls.tree
                 NegativeOutputUI item = new NegativeOutputUI((NegativeOutput)e.NewValue);
                 mainWindow.addChildToPanel(item);
             }
+            else if (typeof(CombineInputs).Equals((e.NewValue.GetType())))
+            {
+                CombineInputUI item = new CombineInputUI((CombineInputs)e.NewValue);
+                mainWindow.addChildToPanel(item);
+            }
+            else if (typeof(modals.Key).Equals((e.NewValue.GetType())))
+            {
+                ButtonUI item = new ButtonUI((modals.Key)e.NewValue);
+                mainWindow.addChildToPanel(item);
+            }
+            else if (typeof(KeyPad).Equals((e.NewValue.GetType())))
+            {
+                KeyPadUI item = new KeyPadUI((KeyPad)e.NewValue);
+                mainWindow.addChildToPanel(item);
+            }
+            else if (typeof(ECU).Equals((e.NewValue.GetType())))
+            {
+                EcuUI item = new EcuUI((ECU)e.NewValue);
+                mainWindow.addChildToPanel(item);
+            }
+            else
+            {
+                mainWindow.clearPanel();
+            }
 
         }
 
@@ -76,36 +100,31 @@ namespace DataCom.customUserControls.tree
                 int num = 1;
                 foreach (ECU ecu in globalData.dataComModal.ecus)
                 {
-                    TreeViewItem mainBoard = new TreeViewItem();
-                    mainBoard.Header = "MainBoard_" + num;
-                    mainBoard.Background = null;
+                    ecu.Header = "keypad_" + num;
+                    ecu.Background = null;
+                    ecu.Padding = new Thickness(0, 3, 0, 3);
+                    ecu.Template = mainBoards.Template;
 
-                    createChild("Positive Outputs", "positive_output_", mainBoard, ecu.positiveList);
-                    createChild("Negativee Outputs", "negativee_output_", mainBoard, ecu.negativeList);
-                    createChild("External Inputs", "external_input_", mainBoard, ecu.externalList);
-                    createChild("Analog Inputs", "analog_input_", mainBoard, ecu.analogList);
-                    createChild("Combine Inputs", "combine_inputs_", mainBoard, ecu.combineList);
-                    createChild("Events", "events_", mainBoard, ecu.eventsList);
+                    createChild("Positive Outputs", "positive_output_", ecu, ecu.positiveList);
+                    createChild("Negativee Outputs", "negativee_output_", ecu, ecu.negativeList);
+                    createChild("External Inputs", "external_input_", ecu, ecu.externalList);
+                    createChild("Analog Inputs", "analog_input_", ecu, ecu.analogList);
+                    createChild("Combine Inputs", "combine_inputs_", ecu, ecu.combineList);
+                    createChild("Events", "events_", ecu, ecu.eventsList);
                     num++;
-
-                    //TreeViewItem loadShading = new TreeViewItem();
+                                        
                     ecu.loadShading.Header = "Load Shading";
                     ecu.loadShading.Background = null;
                     ecu.loadShading.Padding = new Thickness(0, 3, 0, 3);
-                    ecu.loadShading.Template = mainBoard.Template;
+                    ecu.loadShading.Template = ecu.Template;
 
                     ecu.powerManagement.Header = "Power Management";
                     ecu.powerManagement.Background = null;
                     ecu.powerManagement.Padding = new Thickness(0, 3, 0, 3);
-                    ecu.powerManagement.Template = mainBoard.Template;
-                    //loadShading.Header = "Load Shading";
-                    //loadShading.Background = null;
-                    //TreeViewItem power = new TreeViewItem();
-                    //power.Header = "Power Management";
-                    //power.Background = null;
-                    mainBoard.Items.Add(ecu.powerManagement);
-                    mainBoard.Items.Add(ecu.loadShading);
-                    mainBoards.Items.Add(mainBoard);
+                    ecu.powerManagement.Template = ecu.Template;
+                    ecu.Items.Add(ecu.powerManagement);
+                    ecu.Items.Add(ecu.loadShading);
+                    mainBoards.Items.Add(ecu);
                 }
                 treeView.Items.Add(mainBoards);
             }
@@ -114,17 +133,18 @@ namespace DataCom.customUserControls.tree
             {
                 TreeViewItem KeyPads = new TreeViewItem();
                 KeyPads.Header = "Keypads";
-                KeyPads.Background = null;
+                KeyPads.Background = null;                             
                 int num = 1;
                 foreach (KeyPad item in globalData.dataComModal.keyPads)
                 {
-                    TreeViewItem keypad = new TreeViewItem();
-                    keypad.Header = "keypad_" + num;
-                    keypad.Background = null;
-                    createChild("Keys", "Key_", keypad, item.keys);
-                    KeyPads.Items.Add(keypad);
+                    item.Header = "keypad_" + num;
+                    item.Background = null;
+                    item.Padding = new Thickness(0, 3, 0, 3);
+                    item.Template = KeyPads.Template;
+                    createChild("Keys", "Key_", item, item.keys);
+                    KeyPads.Items.Add(item);
                 }
-                treeView.Items.Add(KeyPads);
+                treeView.Items.Add(KeyPads);                
             }
 
         }
@@ -136,7 +156,7 @@ namespace DataCom.customUserControls.tree
             {
                 TreeViewItem parent = new TreeViewItem();
                 parent.Header = parentName;
-                parent.Background = null;
+                parent.Background = null;                
                 foreach (TreeViewItem item in list)
                 {
                     item.Header = name + num;
@@ -147,25 +167,6 @@ namespace DataCom.customUserControls.tree
                 }
                 ParentItem.Items.Add(parent);
             }
-        }
-
-        //private void createChild(string parentName, string name, int count, TreeViewItem ParentItem)
-        //{
-        //    int num = 1;
-        //    if (count > 0)
-        //    {
-        //        TreeViewItem parent = new TreeViewItem();
-        //        parent.Header = parentName;
-        //        for (int i = 0; i < count; i++)
-        //        {
-        //            TreeViewItem childItem = new TreeViewItem();
-        //            childItem.Header = name + num;
-        //            childItem.Background = null;
-        //            parent.Items.Add(childItem);
-        //            num++;
-        //        }
-        //        ParentItem.Items.Add(parent);
-        //    }
-        //}
+        }        
     }
 }

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using static DataCom.modals.enums.Definitions;
 
 namespace DataCom.modals
 {
-    public class ECU
+    public class ECU : TreeViewItem
     {
         private int numberOFPOsitiveOutputs;
         private int numberOFNEgativeOutputs;
