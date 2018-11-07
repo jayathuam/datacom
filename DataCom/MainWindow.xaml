@@ -47,10 +47,10 @@
         <Button Command="{Binding EditDetailCommand}" ToolTip="Save as" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,98,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333" Grid.Column="1">
             <iconPacks:Modern Width="10" Height="10" Kind="DiskUpload" />
         </Button>
-        <Button Command="{Binding EditDetailCommand}" ToolTip="Save" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,128,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333" Grid.Column="1">
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Save" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,128,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333" Grid.Column="1" Click="Save_Click">
             <iconPacks:FontAwesome Width="10" Height="10" Kind="SaveRegular" />
         </Button>
-        <Button Command="{Binding EditDetailCommand}" ToolTip="Open" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,158,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333" Grid.Column="1">
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Open" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,158,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333" Grid.Column="1" Click="Open_Click">
             <iconPacks:FontAwesome Width="10" Height="10" Kind="FolderOpenRegular" />
         </Button>
         <Button Command="{Binding EditDetailCommand}" ToolTip="New" Style="{DynamicResource MetroCircleButtonStyle}" Margin="0,5,188,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Right" Width="30" RenderTransformOrigin="0.133,0.333" Click="New_Click" Grid.Column="1">

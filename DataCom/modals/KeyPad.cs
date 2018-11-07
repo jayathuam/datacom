@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +9,20 @@ using static DataCom.modals.enums.Definitions;
 
 namespace DataCom.modals
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class KeyPad: TreeViewItem
     {
-        public List<Object> keys;
+        [JsonProperty]
+        public List<Key> keys { get; set; }
+
+        public KeyPad()
+        {
+            keys = new List<Key>();
+        }
 
         public KeyPad(KEYPAD_TYPE keypadType)
         {
-            keys = new List<Object>();
+            keys = new List<Key>();
             init(keypadType);                      
         }
 

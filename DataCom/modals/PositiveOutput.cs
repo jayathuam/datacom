@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ using System.Windows.Forms;
 
 namespace DataCom.modals
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class PositiveOutput : TreeViewItem
     {
         public PositiveOutput()

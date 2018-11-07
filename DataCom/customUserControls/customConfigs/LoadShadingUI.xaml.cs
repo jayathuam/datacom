@@ -27,10 +27,8 @@ namespace DataCom.customUserControls.customConfigs
         {
             InitializeComponent();
             this.loadShading = loadShading;
-            level1Slider.Value = loadShading.Level1;
-            level2Slider.Value = loadShading.Level2;
-            powerCmb.ItemsSource = Enum.GetValues(typeof(POWER_SOURCE));
-            powerCmb.SelectedItem = (POWER_SOURCE) 1;
+            this.DataContext = loadShading;            
+            powerCmb.ItemsSource = Enum.GetValues(typeof(POWER_SOURCE));            
         }
     }
 }

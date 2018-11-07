@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ using static DataCom.modals.enums.Definitions;
 
 namespace DataCom.modals
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class ECU : TreeViewItem
     {
         private int numberOFPOsitiveOutputs;
@@ -17,23 +19,41 @@ namespace DataCom.modals
         private int numberOFCombineInputs;
         private int numberOFEvents;
 
-        public List<object> positiveList;
-        public List<object> negativeList;
-        public List<object> externalList;
-        public List<object> analogList;
-        public List<object> combineList;
-        public List<object> eventsList;
-        public LoadShading loadShading;
-        public PowerManagement powerManagement;
+        [JsonProperty]
+        public List<PositiveOutput> positiveList { get; set; }
+        [JsonProperty]
+        public List<NegativeOutput> negativeList { get; set; }
+        [JsonProperty]
+        public List<ExternalInput> externalList { get; set; }
+        [JsonProperty]
+        public List<AnalogInput> analogList { get; set; }
+        [JsonProperty]
+        public List<CombineInputs> combineList { get; set; }
+        [JsonProperty]
+        public List<Events> eventsList { get; set; }
+        [JsonProperty]
+        public LoadShading loadShading { get; set; }
+        [JsonProperty]
+        public PowerManagement powerManagement { get; set; }
+
+        public ECU()
+        {
+            positiveList = new List<PositiveOutput>();
+            negativeList = new List<NegativeOutput>();
+            externalList = new List<ExternalInput>();
+            analogList = new List<AnalogInput>();
+            combineList = new List<CombineInputs>();
+            eventsList = new List<Events>();
+        }
 
         public ECU(ECU_TYPE ecuType)
         {
-            positiveList = new List<object>();
-            negativeList = new List<object>();
-            externalList = new List<object>();
-            analogList = new List<object>();
-            combineList = new List<object>();
-            eventsList = new List<object>();
+            positiveList = new List<PositiveOutput>();
+            negativeList = new List<NegativeOutput>();
+            externalList = new List<ExternalInput>();
+            analogList = new List<AnalogInput>();
+            combineList = new List<CombineInputs>();
+            eventsList = new List<Events>();
             init(ecuType);
         }
 

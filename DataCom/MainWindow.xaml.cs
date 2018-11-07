@@ -16,6 +16,11 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.IconPacks;
 using DataCom.globalDataStore;
 using DataCom.otherWindows;
+using Microsoft.Win32;
+using Newtonsoft.Json;
+using System.IO;
+using DataCom.modals;
+using Newtonsoft.Json.Linq;
 
 namespace DataCom
 {
@@ -26,6 +31,7 @@ namespace DataCom
     {
         private GlobalData globalData;
         private NewProject window;
+        private OpenFileDialog openFileDialog;
         public MainWindow()
         {
             InitializeComponent();
@@ -71,6 +77,30 @@ namespace DataCom
             window.Show();
         }
 
+        private void Open_Click(object sender, RoutedEventArgs e)
+        {
+            if (openFileDialog == null)
+            {
+                openFileDialog = new OpenFileDialog();
+            }
+            openFileDialog.Filter = "DataCom Files (*.dcom)|*.dcom";
+            openFileDialog.Multiselect = false;            
+            if (openFileDialog.ShowDialog() == true)
+            {
+                globalData.filePath = openFileDialog.FileName;
+                string contents = File.ReadAllText(globalData.filePath);
+                JsonSerializerSettings settings = new JsonSerializerSettings();
+                settings.MissingMemberHandling = MissingMemberHandling.Ignore;
+                settings.NullValueHandling = NullValueHandling.Ignore;
+                settings.ObjectCreationHandling = ObjectCreationHandling.Replace;
+                globalData.dataComModal = JsonConvert.DeserializeObject<DataComModal>(contents,settings);
+                string file = JsonConvert.SerializeObject(globalData.dataComModal);
+                File.WriteAllText("xxx.json", file);
+
+                populateTree();                             
+            }
+        }
+
         private void btnDeviceInfo_Click(object sender, RoutedEventArgs e)
         {
             deviceInfoFlyout.IsOpen = true;
@@ -95,6 +125,13 @@ namespace DataCom
         public void clearPanel()
         {
             controPanel.Children.Clear();            
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            string file = JsonConvert.SerializeObject(globalData.dataComModal);
+            File.WriteAllText(globalData.filePath, file);
+            globalData.showSuccess("Success", "Project saved successfully.");
         }
     }
 }

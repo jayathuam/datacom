@@ -10,11 +10,11 @@
         <Label x:Name="label" Content="Power Source" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label1" Content="Level 1" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label1_Copy" Content="Level 2" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="powerCmb" HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top" Width="166"/>
-        <Slider x:Name="level1Slider" HorizontalAlignment="Left" Margin="189,51,0,0" VerticalAlignment="Top" Width="341"/>
-        <Slider x:Name="level2Slider" HorizontalAlignment="Left" Margin="189,82,0,0" VerticalAlignment="Top" Width="341"/>
-        <Label x:Name="level1Lbl" Content="0" HorizontalAlignment="Left" Margin="607,41,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="level2Lbl" Content="0" HorizontalAlignment="Left" Margin="607,72,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="powerCmb" HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top" Width="166" SelectedItem="{Binding PowerSource}"/>
+        <Slider x:Name="level1Slider" HorizontalAlignment="Left" Margin="189,51,0,0" VerticalAlignment="Top" Width="341" Value="{Binding Level1}"/>
+        <Slider x:Name="level2Slider" HorizontalAlignment="Left" Margin="189,82,0,0" VerticalAlignment="Top" Width="341" Value="{Binding Level2}"/>
+        <Label x:Name="level1Lbl" HorizontalAlignment="Left" Margin="607,41,0,0" VerticalAlignment="Top" Content="{Binding ElementName=level1Slider, Path=Value}"/>
+        <Label x:Name="level2Lbl" HorizontalAlignment="Left" Margin="607,72,0,0" VerticalAlignment="Top" Content="{Binding ElementName=level2Slider, Path=Value}"/>
 
     </Grid>
 </UserControl>

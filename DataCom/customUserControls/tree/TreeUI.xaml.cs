@@ -100,25 +100,28 @@ namespace DataCom.customUserControls.tree
                 int num = 1;
                 foreach (ECU ecu in globalData.dataComModal.ecus)
                 {
-                    ecu.Header = "keypad_" + num;
+                    ecu.Header = "ECU_" + num;
+                    ecu.Name = "ECU_" + num;
                     ecu.Background = null;
                     ecu.Padding = new Thickness(0, 3, 0, 3);
                     ecu.Template = mainBoards.Template;
 
-                    createChild("Positive Outputs", "positive_output_", ecu, ecu.positiveList);
-                    createChild("Negativee Outputs", "negativee_output_", ecu, ecu.negativeList);
-                    createChild("External Inputs", "external_input_", ecu, ecu.externalList);
-                    createChild("Analog Inputs", "analog_input_", ecu, ecu.analogList);
-                    createChild("Combine Inputs", "combine_inputs_", ecu, ecu.combineList);
-                    createChild("Events", "events_", ecu, ecu.eventsList);
+                    createChild("Positive Outputs", "positive_output_", ecu, ecu.positiveList.Cast<Object>().ToList());
+                    createChild("Negativee Outputs", "negativee_output_", ecu, ecu.negativeList.Cast<Object>().ToList());
+                    createChild("External Inputs", "external_input_", ecu, ecu.externalList.Cast<Object>().ToList());
+                    createChild("Analog Inputs", "analog_input_", ecu, ecu.analogList.Cast<Object>().ToList());
+                    createChild("Combine Inputs", "combine_inputs_", ecu, ecu.combineList.Cast<Object>().ToList());
+                    createChild("Events", "events_", ecu, ecu.eventsList.Cast<Object>().ToList());
                     num++;
                                         
                     ecu.loadShading.Header = "Load Shading";
+                    ecu.loadShading.Name = "LoadShading";
                     ecu.loadShading.Background = null;
                     ecu.loadShading.Padding = new Thickness(0, 3, 0, 3);
                     ecu.loadShading.Template = ecu.Template;
 
                     ecu.powerManagement.Header = "Power Management";
+                    ecu.powerManagement.Name = "PowerManagement";
                     ecu.powerManagement.Background = null;
                     ecu.powerManagement.Padding = new Thickness(0, 3, 0, 3);
                     ecu.powerManagement.Template = ecu.Template;
@@ -138,10 +141,11 @@ namespace DataCom.customUserControls.tree
                 foreach (KeyPad item in globalData.dataComModal.keyPads)
                 {
                     item.Header = "keypad_" + num;
+                    item.Name = "keypad_" + num;
                     item.Background = null;
                     item.Padding = new Thickness(0, 3, 0, 3);
                     item.Template = KeyPads.Template;
-                    createChild("Keys", "Key_", item, item.keys);
+                    createChild("Keys", "Key_", item, item.keys.Cast<Object>().ToList());
                     KeyPads.Items.Add(item);
                 }
                 treeView.Items.Add(KeyPads);                
@@ -149,7 +153,7 @@ namespace DataCom.customUserControls.tree
 
         }
 
-        private void createChild(string parentName, string name, TreeViewItem ParentItem, List<object> list)
+        private void createChild(string parentName, string name, TreeViewItem ParentItem, List<Object> list)
         {
             int num = 1;
             if (list.Count > 0)
@@ -160,6 +164,7 @@ namespace DataCom.customUserControls.tree
                 foreach (TreeViewItem item in list)
                 {
                     item.Header = name + num;
+                    item.Name = name + num;
                     item.Padding = new Thickness(0, 3, 0, 3);
                     item.Template = parent.Template;
                     parent.Items.Add(item);
