@@ -8,12 +8,13 @@
         xmlns:notifications="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
         xmlns:local="clr-namespace:DataCom"
         xmlns:deviceInfo="clr-namespace:DataCom.customUserControls.deviceInfo"
+        xmlns:startup="clr-namespace:DataCom.customUserControls.openingDialog"
         xmlns:tree="clr-namespace:DataCom.customUserControls.tree"
         mc:Ignorable="d"
-        Title="DataCom" WindowStartupLocation="CenterScreen" WindowTransitionsEnabled="False" MinHeight="{Binding Source={x:Static SystemParameters.FullPrimaryScreenHeight}}"
+        Title="DataCom Pro" WindowStartupLocation="CenterScreen" WindowTransitionsEnabled="False" MinHeight="{Binding Source={x:Static SystemParameters.FullPrimaryScreenHeight}}"
                       MinWidth="{Binding Source={x:Static SystemParameters.FullPrimaryScreenWidth}}"
                      IsMaxRestoreButtonEnabled="False" Loaded="MetroWindow_Loaded" WindowState="Maximized" ResizeMode="CanMinimize" WindowStyle="None" Closing="MetroWindow_Closing">
-    <Grid Background="#FF7E7E7E">
+    <Grid Name="mainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="205*"/>
@@ -25,11 +26,12 @@
 
         <Grid Grid.Row="0"
           Grid.Column="0"
-          Background="#FF5F5E5E" Grid.ColumnSpan="2" />
+          Grid.ColumnSpan="2" Background="#FF5F5E5E" />
 
-        <Grid Grid.Row="1"
-          Grid.Column="1"
-          Background="White" Grid.ColumnSpan="2" />
+        <Grid Grid.Row="1" Name="startupGrid"
+          Grid.Column="1" Grid.ColumnSpan="2">
+            <startup:OpeningDialog x:Name="startupScreen" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-149,38,217,57"/>
+        </Grid>
 
         <tree:TreeUI x:Name="treeview" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" Foreground="White" FontWeight="Bold"></tree:TreeUI>
 
@@ -58,7 +60,7 @@
         </Button>
 
         <Controls:DropDownButton Width="80" Height="30" Content="Data Com   " DisplayMemberPath="Title" BorderThickness="0" Background="#FFEC4D4D" 
-                                 HorizontalAlignment="Left" FontSize="12" Margin="1,5,0,5" FontWeight="Bold" Foreground="Black" ArrowBrush="Black">
+                                 HorizontalAlignment="Left" FontSize="12" Margin="2,5,0,5" FontWeight="Bold" Foreground="Black" ArrowBrush="Black">
             <Controls:DropDownButton.Items>
                 <MenuItem Header="Port" Name="menuItmPort">
                 </MenuItem>

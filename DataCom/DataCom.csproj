@@ -147,6 +147,9 @@
     <Compile Include="customUserControls\deviceInfo\DeviceInfo.xaml.cs">
       <DependentUpon>DeviceInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="customUserControls\openingDialog\OpeningDialog.xaml.cs">
+      <DependentUpon>OpeningDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="globalDataStore\GlobalData.cs" />
     <Compile Include="modals\AnalogInput.cs" />
     <Compile Include="modals\CombineInputs.cs" />
@@ -168,6 +171,7 @@
       <DependentUpon>TreeUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="SerialCommunication\Serial.cs" />
+    <Compile Include="util\Util.cs" />
     <Page Include="customUserControls\customConfigs\AnalogInputUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -205,6 +209,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="customUserControls\deviceInfo\DeviceInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="customUserControls\openingDialog\OpeningDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -257,7 +265,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="assets\3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\1.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

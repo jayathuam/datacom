@@ -13,12 +13,14 @@ namespace DataCom.modals
     {
         public NegativeOutput()
         {
-            Background = null;
+            Background = null;           
         }
         public NegativeOutput(string header)
         {
             Header = header;
-            Background = null;
+            Background = null;            
         }
+
+        
     }
 }

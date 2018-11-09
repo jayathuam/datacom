@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="DataCom.customUserControls.openingDialog.OpeningDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DataCom.customUserControls.openingDialog"
+             mc:Ignorable="d" 
+             Width="800" Height="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="53*"/>
+            <RowDefinition Height="347*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+          Grid.Column="0"
+          Grid.ColumnSpan="2" Background="#FF322F2F" />
+        <Grid Grid.Row="1" Name="conainer"
+          Grid.Column="0"
+          Grid.ColumnSpan="2" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1"
+                    Grid.Column="0"
+               Grid.ColumnSpan="2" Background="#FF322F2F" Opacity=".8" >
+                <Button x:Name="newBtn" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" Margin="10,0,0,0" Content="New Project" Style="{StaticResource MetroFlatButton}" Background="#FFEC4D4D" BorderBrush="{x:Null}"/>
+                <Button x:Name="openBtn" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" Margin="114,0,0,0" Content="Open Project" Style="{StaticResource MetroFlatButton}" BorderBrush="{x:Null}" Background="#FFA09E9E"/>
+            </Grid>
+            <StackPanel HorizontalAlignment="Left" Height="auto" Margin="10,10,0,0" VerticalAlignment="Top" MinWidth="306" Width="auto" Background="#FFA09E9E" Opacity=".7">
+                <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Recent Projects" Margin="10,10,0,0"/>
+                <Grid Margin="10,20,0,10">
+                    <StackPanel Name="recentProjs">
+                        <TextBlock TextWrapping="Wrap" Text="Recent Projects" Margin="10,10,0,0" Foreground="#FF097DCD"/>
+                        <TextBlock TextWrapping="Wrap" Text="Recent Projects" Margin="10,10,0,0" Foreground="#FF097DCD"/>
+                        <TextBlock TextWrapping="Wrap" Text="Recent Projects" Margin="10,10,0,0" Foreground="#FF097DCD"/>
+                        <TextBlock TextWrapping="Wrap" Text="Recent Projects" Margin="10,10,0,0" Foreground="#FF097DCD"/>
+                        <TextBlock TextWrapping="Wrap" Text="Recent Projects" Margin="10,10,0,0" Foreground="#FF097DCD"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+            <Grid.Background>
+                <ImageBrush ImageSource="/DataCom;component/assets/1.jpg"/>
+            </Grid.Background>
+        </Grid>
+
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="DataCom" Foreground="White" FontSize="24" VerticalAlignment="Center"/>
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="122,19,0,12" TextWrapping="Wrap" Text="Pro" Foreground="#FFEC4D4D" FontSize="16" VerticalAlignment="Center"/>
+        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="150,27,0,14" TextWrapping="Wrap" Text="1.0" Foreground="White" VerticalAlignment="Center" FontSize="9"/>
+
+    </Grid>
+</UserControl>

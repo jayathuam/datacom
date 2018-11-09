@@ -1,4 +1,5 @@
 ﻿using DataCom.modals;
+using DataCom.SerialCommunication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,20 @@ namespace DataCom.customUserControls.customConfigs
     /// </summary>
     public partial class AnalogInputUI : UserControl
     {
-        public AnalogInputUI(AnalogInput loadShading)
+        private AnalogInput analogInput;
+        private Serial serial;
+        public AnalogInputUI(AnalogInput analogInput, Serial serial)
         {
             InitializeComponent();
+            this.analogInput = analogInput;
+            this.DataContext = analogInput;
+            this.serial = serial;
+            serial.Analoginputevent += event_recived;
+        }
+
+        private void event_recived(object sender, string e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

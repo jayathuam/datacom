@@ -21,6 +21,7 @@ using Newtonsoft.Json;
 using System.IO;
 using DataCom.modals;
 using Newtonsoft.Json.Linq;
+using DataCom.SerialCommunication;
 
 namespace DataCom
 {
@@ -32,10 +33,13 @@ namespace DataCom
         private GlobalData globalData;
         private NewProject window;
         private OpenFileDialog openFileDialog;
+        private Serial serial;
         public MainWindow()
         {
             InitializeComponent();
             globalData = new GlobalData();
+            serial = new Serial(globalData);
+            mainGrid.Background = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "assets/3.jpg")));
         }
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
@@ -92,11 +96,11 @@ namespace DataCom
                 JsonSerializerSettings settings = new JsonSerializerSettings();
                 settings.MissingMemberHandling = MissingMemberHandling.Ignore;
                 settings.NullValueHandling = NullValueHandling.Ignore;
-                settings.ObjectCreationHandling = ObjectCreationHandling.Replace;
+                settings.ObjectCreationHandling = ObjectCreationHandling.Replace;                
                 globalData.dataComModal = JsonConvert.DeserializeObject<DataComModal>(contents,settings);
-                string file = JsonConvert.SerializeObject(globalData.dataComModal);
-                File.WriteAllText("xxx.json", file);
-
+                //string file = JsonConvert.SerializeObject(globalData.dataComModal);
+                //File.WriteAllText("xxx.json", file);
+                moveToProjectScreen();
                 populateTree();                             
             }
         }
@@ -113,7 +117,7 @@ namespace DataCom
 
         public void populateTree()
         {
-            treeview.init(globalData, this);
+            treeview.init(globalData, serial, this);
         }
 
         public void addChildToPanel(UIElement item)
@@ -132,6 +136,21 @@ namespace DataCom
             string file = JsonConvert.SerializeObject(globalData.dataComModal);
             File.WriteAllText(globalData.filePath, file);
             globalData.showSuccess("Success", "Project saved successfully.");
+        }
+
+        public void moveToProjectScreen()
+        {
+            var bc = new BrushConverter();
+            startupScreen.Visibility = Visibility.Hidden;
+            mainGrid.Background = (Brush)bc.ConvertFrom("#FFA09E9E");
+            startupGrid.Background = (Brush)bc.ConvertFrom("#FFF");
+        }
+
+        public void moveToStartupScreen()
+        {
+            startupScreen.Visibility = Visibility.Visible;
+            mainGrid.Background = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "assets/3.jpg")));
+            startupGrid.Background = null;
         }
     }
 }

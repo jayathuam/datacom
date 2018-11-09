@@ -1,6 +1,7 @@
 ﻿using DataCom.customUserControls.customConfigs;
 using DataCom.globalDataStore;
 using DataCom.modals;
+using DataCom.SerialCommunication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace DataCom.customUserControls.tree
     {
         private GlobalData globalData;
         private MainWindow mainWindow;
+        private Serial serial;
 
         public TreeUI()
         {
@@ -38,46 +40,55 @@ namespace DataCom.customUserControls.tree
             if (typeof(LoadShading).Equals((e.NewValue.GetType())))
             {
                 LoadShadingUI item = new LoadShadingUI((LoadShading)e.NewValue);
+                item.Width = mainWindow.startupGrid.ActualWidth;
                 mainWindow.addChildToPanel(item);
             }
             else if (typeof(AnalogInput).Equals((e.NewValue.GetType())))
             {
-                AnalogInputUI item = new AnalogInputUI((AnalogInput)e.NewValue);
+                AnalogInputUI item = new AnalogInputUI((AnalogInput)e.NewValue, serial);
+                item.Width = mainWindow.startupGrid.ActualWidth;
                 mainWindow.addChildToPanel(item);
             }
             else if (typeof(ExternalInput).Equals((e.NewValue.GetType())))
             {
                 ExternalInputUI item = new ExternalInputUI((ExternalInput)e.NewValue);
+                item.Width = mainWindow.startupGrid.ActualWidth;
                 mainWindow.addChildToPanel(item);
             }
             else if (typeof(PositiveOutput).Equals((e.NewValue.GetType())))
             {
                 PositiveOutputUI item = new PositiveOutputUI((PositiveOutput)e.NewValue);
+                item.Width = mainWindow.startupGrid.ActualWidth;
                 mainWindow.addChildToPanel(item);
             }
             else if (typeof(NegativeOutput).Equals((e.NewValue.GetType())))
             {
                 NegativeOutputUI item = new NegativeOutputUI((NegativeOutput)e.NewValue);
+                item.Width = mainWindow.startupGrid.ActualWidth;
                 mainWindow.addChildToPanel(item);
             }
             else if (typeof(CombineInputs).Equals((e.NewValue.GetType())))
             {
                 CombineInputUI item = new CombineInputUI((CombineInputs)e.NewValue);
+                item.Width = mainWindow.startupGrid.ActualWidth;
                 mainWindow.addChildToPanel(item);
             }
             else if (typeof(modals.Key).Equals((e.NewValue.GetType())))
             {
                 ButtonUI item = new ButtonUI((modals.Key)e.NewValue);
+                item.Width = mainWindow.startupGrid.ActualWidth;
                 mainWindow.addChildToPanel(item);
             }
             else if (typeof(KeyPad).Equals((e.NewValue.GetType())))
             {
                 KeyPadUI item = new KeyPadUI((KeyPad)e.NewValue);
+                item.Width = mainWindow.startupGrid.ActualWidth;
                 mainWindow.addChildToPanel(item);
             }
             else if (typeof(ECU).Equals((e.NewValue.GetType())))
             {
                 EcuUI item = new EcuUI((ECU)e.NewValue);
+                item.Width = mainWindow.startupGrid.ActualWidth;
                 mainWindow.addChildToPanel(item);
             }
             else
@@ -87,10 +98,11 @@ namespace DataCom.customUserControls.tree
 
         }
 
-        public void init(GlobalData globalData, MainWindow mainWindow)
+        public void init(GlobalData globalData, Serial serial, MainWindow mainWindow)
         {
             this.globalData = globalData;
             this.mainWindow = mainWindow;
+            this.serial = serial;
             treeView.Items.Clear();
             if (globalData.dataComModal.ecus.Count > 0)
             {
@@ -100,8 +112,11 @@ namespace DataCom.customUserControls.tree
                 int num = 1;
                 foreach (ECU ecu in globalData.dataComModal.ecus)
                 {
-                    ecu.Header = "ECU_" + num;
-                    ecu.Name = "ECU_" + num;
+                    if (ecu.Header == null)
+                    {
+                        ecu.Header = "ECU_" + num;
+                    }                    
+                    ecu.Name = ecu.Header.ToString().Replace(" ", string.Empty);
                     ecu.Background = null;
                     ecu.Padding = new Thickness(0, 3, 0, 3);
                     ecu.Template = mainBoards.Template;
@@ -113,15 +128,21 @@ namespace DataCom.customUserControls.tree
                     createChild("Combine Inputs", "combine_inputs_", ecu, ecu.combineList.Cast<Object>().ToList());
                     createChild("Events", "events_", ecu, ecu.eventsList.Cast<Object>().ToList());
                     num++;
-                                        
-                    ecu.loadShading.Header = "Load Shading";
-                    ecu.loadShading.Name = "LoadShading";
+
+                    if (ecu.loadShading.Header == null)
+                    {
+                        ecu.loadShading.Header = "Load Shading";
+                    }                    
+                    ecu.loadShading.Name = ecu.loadShading.Header.ToString().Replace(" ", string.Empty);
                     ecu.loadShading.Background = null;
                     ecu.loadShading.Padding = new Thickness(0, 3, 0, 3);
                     ecu.loadShading.Template = ecu.Template;
 
-                    ecu.powerManagement.Header = "Power Management";
-                    ecu.powerManagement.Name = "PowerManagement";
+                    if (ecu.powerManagement.Header == null)
+                    {
+                        ecu.powerManagement.Header = "Power Management";
+                    }                    
+                    ecu.powerManagement.Name = ecu.powerManagement.Header.ToString().Replace(" ", string.Empty);
                     ecu.powerManagement.Background = null;
                     ecu.powerManagement.Padding = new Thickness(0, 3, 0, 3);
                     ecu.powerManagement.Template = ecu.Template;
@@ -140,13 +161,17 @@ namespace DataCom.customUserControls.tree
                 int num = 1;
                 foreach (KeyPad item in globalData.dataComModal.keyPads)
                 {
-                    item.Header = "keypad_" + num;
-                    item.Name = "keypad_" + num;
+                    if (item.Header == null)
+                    {
+                        item.Header = "keypad_" + num;
+                    }                    
+                    item.Name = item.Header.ToString().Replace(" ", string.Empty);
                     item.Background = null;
                     item.Padding = new Thickness(0, 3, 0, 3);
                     item.Template = KeyPads.Template;
                     createChild("Keys", "Key_", item, item.keys.Cast<Object>().ToList());
                     KeyPads.Items.Add(item);
+                    num++;
                 }
                 treeView.Items.Add(KeyPads);                
             }
@@ -163,8 +188,11 @@ namespace DataCom.customUserControls.tree
                 parent.Background = null;                
                 foreach (TreeViewItem item in list)
                 {
-                    item.Header = name + num;
-                    item.Name = name + num;
+                    if(item.Header == null)
+                    {
+                        item.Header = name + num;
+                    }                    
+                    item.Name = item.Header.ToString().Replace(" ",string.Empty);
                     item.Padding = new Thickness(0, 3, 0, 3);
                     item.Template = parent.Template;
                     parent.Items.Add(item);
