@@ -34,12 +34,29 @@ namespace DataCom
         private NewProject window;
         private OpenFileDialog openFileDialog;
         private Serial serial;
+        private TransportLayer transporLayer;
+        private CANInterface canInterface;
+        private CommandHandler commandHandler;
+
         public MainWindow()
         {
             InitializeComponent();
             globalData = new GlobalData();
-            serial = new Serial(globalData);
+            transporLayer = new TransportLayer();
+            serial = new Serial(globalData, transporLayer);
+            serial.deviceInfoEvent += device_info_event;
+            canInterface = new CANInterface(transporLayer, serial);
+            commandHandler = new CommandHandler(canInterface, transporLayer, serial);
             mainGrid.Background = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "assets/3.jpg")));
+        }
+
+        private void device_info_event(object sender, bool e)
+        {
+            if (e)
+            {
+                deviceInfoUserControl.setEcu(globalData.deviceInfo.ecus);
+                deviceInfoUserControl.setKeyPad(globalData.deviceInfo.keyPads);
+            }
         }
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
@@ -70,8 +87,17 @@ namespace DataCom
 
         public void item_Click(Object sender, RoutedEventArgs e)
         {
+            foreach (MenuItem item in menuItmPort.Items)
+            {
+                if(item.Icon != null)
+                {
+                    item.Icon = null;
+                }
+            }
             MenuItem mnu = (MenuItem)sender;
-            MessageBox.Show(mnu.Header.ToString());
+            mnu.Icon = getPortSelectedIcon();
+            globalData.serialPort = mnu.Header.ToString();
+            serial.connect();
         }
 
         private void New_Click(object sender, RoutedEventArgs e)
@@ -88,7 +114,7 @@ namespace DataCom
                 openFileDialog = new OpenFileDialog();
             }
             openFileDialog.Filter = "DataCom Files (*.dcom)|*.dcom";
-            openFileDialog.Multiselect = false;            
+            openFileDialog.Multiselect = false;
             if (openFileDialog.ShowDialog() == true)
             {
                 globalData.filePath = openFileDialog.FileName;
@@ -96,23 +122,26 @@ namespace DataCom
                 JsonSerializerSettings settings = new JsonSerializerSettings();
                 settings.MissingMemberHandling = MissingMemberHandling.Ignore;
                 settings.NullValueHandling = NullValueHandling.Ignore;
-                settings.ObjectCreationHandling = ObjectCreationHandling.Replace;                
-                globalData.dataComModal = JsonConvert.DeserializeObject<DataComModal>(contents,settings);
+                settings.ObjectCreationHandling = ObjectCreationHandling.Replace;
+                globalData.dataComModal = JsonConvert.DeserializeObject<DataComModal>(contents, settings);
                 //string file = JsonConvert.SerializeObject(globalData.dataComModal);
                 //File.WriteAllText("xxx.json", file);
                 moveToProjectScreen();
-                populateTree();                             
+                populateTree();
             }
         }
 
         private void btnDeviceInfo_Click(object sender, RoutedEventArgs e)
         {
+            commandHandler.cmdRequestDevInfo();
+            Console.WriteLine("send request for info");
             deviceInfoFlyout.IsOpen = true;
         }
 
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Application.Current.Shutdown();
+            Environment.Exit(Environment.ExitCode);
         }
 
         public void populateTree()
@@ -128,7 +157,7 @@ namespace DataCom
 
         public void clearPanel()
         {
-            controPanel.Children.Clear();            
+            controPanel.Children.Clear();
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -136,6 +165,11 @@ namespace DataCom
             string file = JsonConvert.SerializeObject(globalData.dataComModal);
             File.WriteAllText(globalData.filePath, file);
             globalData.showSuccess("Success", "Project saved successfully.");
+        }
+
+        private void GetDeviceInfo_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         public void moveToProjectScreen()

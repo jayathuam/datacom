@@ -12,9 +12,14 @@ namespace DataCom.globalDataStore
     public class GlobalData
     {
         private NotificationManager notificationManager;
+        public static string mainBoardName = "Main Boards";
+        public static string keypadname = "Key Pads";
         public string serialPort { get; set; }
         public string filePath { get; set; }
         public DataComModal dataComModal { get; set; }
+
+        public DataComModal deviceInfo { get; set; }
+
         public GlobalData()
         {
             var config = new NLog.Config.LoggingConfiguration();
@@ -22,6 +27,7 @@ namespace DataCom.globalDataStore
             var logconsole = new NLog.Targets.ConsoleTarget("logconsole");
             config.AddRule(LogLevel.Info, LogLevel.Fatal, logconsole);
             config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
+            deviceInfo = new DataComModal();
             NLog.LogManager.Configuration = config;
 
             notificationManager = new NotificationManager();            

@@ -12,12 +12,12 @@ namespace DataCom.modals
     [JsonObject(MemberSerialization.OptIn)]
     public class ECU : TreeViewItem
     {
-        private int numberOFPOsitiveOutputs;
-        private int numberOFNEgativeOutputs;
-        private int numberOFExternalOutputs;
-        private int numberOFAnalogInput;
-        private int numberOFCombineInputs;
-        private int numberOFEvents;
+        public int numberOFPOsitiveOutputs { get; set; }
+        public int numberOFNEgativeOutputs { get; set; }
+        public int numberOFExternalOutputs { get; set; }
+        public int numberOFAnalogInput { get; set; }
+        public int numberOFCombineInputs { get; set; }
+        public int numberOFEvents { get; set; }
 
         [JsonProperty]
         public List<PositiveOutput> positiveList { get; set; }
@@ -35,6 +35,13 @@ namespace DataCom.modals
         public LoadShading loadShading { get; set; }
         [JsonProperty]
         public PowerManagement powerManagement { get; set; }
+
+        public ECU_TYPE type { get; set; }
+
+        [JsonProperty]
+        public int shortAddress { get; set; }
+        [JsonProperty]
+        public string uuid { get; set; }
 
         public ECU()
         {
@@ -54,6 +61,7 @@ namespace DataCom.modals
             analogList = new List<AnalogInput>();
             combineList = new List<CombineInputs>();
             eventsList = new List<Events>();
+            this.type = ecuType;
             init(ecuType);
         }
 
@@ -63,23 +71,23 @@ namespace DataCom.modals
         {
             switch (ecuType)
             {
-                case ECU_TYPE.type_1:
+                case ECU_TYPE.MainboardCatogory_System_1:
                     setNumbers(5, 2, 4, 2, 10, 10);
                     break;
-                case ECU_TYPE.type_2:
+                case ECU_TYPE.MainboardCatogory_System_2:
                     setNumbers(8, 8, 8, 3, 10, 10);
                     break;
-                case ECU_TYPE.type_3:
+                case ECU_TYPE.MainboardCatogory_System_3:
                     setNumbers(15, 10, 10, 3, 10, 10);
                     break;
-                case ECU_TYPE.type_4:
+                case ECU_TYPE.MainboardCatogory_System_4:
                     setNumbers(20, 10, 10, 3, 10, 10);
                     break;
 
             }
         }
 
-        private void setNumbers(int positive, int negative, int external, int analog, int combine, int events)
+        public void setNumbers(int positive, int negative, int external, int analog, int combine, int events)
         {
             numberOFPOsitiveOutputs = positive;
             numberOFNEgativeOutputs = negative;

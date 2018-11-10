@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:DataCom.customUserControls.customConfigs"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="DataCom.customUserControls.customConfigs.AnalogInputUI"
+             xmlns:customTree="clr-namespace:DataCom.customUserControls.customTree"
              mc:Ignorable="d" 
              Height="400" Width="auto">
     <Grid>
@@ -38,6 +39,8 @@
         </Button>
         <Label x:Name="label1_Copy1" Content="Analog Voltage" HorizontalAlignment="Left" Margin="10,148,0,0" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="98"/>
         <Label x:Name="analogVltLbl" Content="10 v" HorizontalAlignment="Left" Margin="189,146,0,0" VerticalAlignment="Top" Grid.Row="1" Height="33" Width="40" Foreground="#FFEC4D4D" FontSize="16"/>
+
+        <customTree:CustomTree Grid.Row="1" Margin="10,184,-10,-184"></customTree:CustomTree>
 
     </Grid>
 </UserControl>

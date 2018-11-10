@@ -144,6 +144,9 @@
     <Compile Include="customUserControls\customConfigs\PositiveOutputUI.xaml.cs">
       <DependentUpon>PositiveOutputUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="customUserControls\customTree\CustomTree.xaml.cs">
+      <DependentUpon>CustomTree.xaml</DependentUpon>
+    </Compile>
     <Compile Include="customUserControls\deviceInfo\DeviceInfo.xaml.cs">
       <DependentUpon>DeviceInfo.xaml</DependentUpon>
     </Compile>
@@ -170,7 +173,12 @@
     <Compile Include="customUserControls\tree\TreeUI.xaml.cs">
       <DependentUpon>TreeUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SerialCommunication\CANInterface.cs" />
+    <Compile Include="SerialCommunication\CANPacket.cs" />
+    <Compile Include="SerialCommunication\CommandHandler.cs" />
+    <Compile Include="SerialCommunication\ResultConvertor.cs" />
     <Compile Include="SerialCommunication\Serial.cs" />
+    <Compile Include="SerialCommunication\TransportLayer.cs" />
     <Compile Include="util\Util.cs" />
     <Page Include="customUserControls\customConfigs\AnalogInputUI.xaml">
       <SubType>Designer</SubType>
@@ -205,6 +213,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="customUserControls\customConfigs\PositiveOutputUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="customUserControls\customTree\CustomTree.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

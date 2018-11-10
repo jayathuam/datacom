@@ -74,15 +74,15 @@ namespace DataCom.otherWindows
                 dataModals.version = txtVersion.Text;
 
                 List<ECU> ecus = new List<ECU>();
-                ecus.AddRange(Enumerable.Repeat(0, (int)numOfEcus_1.Value).Select(x => new ECU(ECU_TYPE.type_1)));
-                ecus.AddRange(Enumerable.Repeat(0, (int)numOfEcus_2.Value).Select(x => new ECU(ECU_TYPE.type_2)));
-                ecus.AddRange(Enumerable.Repeat(0, (int)numOfEcus_3.Value).Select(x => new ECU(ECU_TYPE.type_3)));
-                ecus.AddRange(Enumerable.Repeat(0, (int)numOfEcus_4.Value).Select(x => new ECU(ECU_TYPE.type_4)));                
+                ecus.AddRange(Enumerable.Repeat(0, (int)numOfEcus_1.Value).Select(x => new ECU(ECU_TYPE.MainboardCatogory_System_1)));
+                ecus.AddRange(Enumerable.Repeat(0, (int)numOfEcus_2.Value).Select(x => new ECU(ECU_TYPE.MainboardCatogory_System_2)));
+                ecus.AddRange(Enumerable.Repeat(0, (int)numOfEcus_3.Value).Select(x => new ECU(ECU_TYPE.MainboardCatogory_System_3)));
+                ecus.AddRange(Enumerable.Repeat(0, (int)numOfEcus_4.Value).Select(x => new ECU(ECU_TYPE.MainboardCatogory_System_4)));                
 
                 List<KeyPad> keyPads = new List<KeyPad>();
-                keyPads.AddRange(Enumerable.Repeat(0, (int)numOfKeyPads_1.Value).Select(x => new KeyPad(KEYPAD_TYPE.type_1)));
-                keyPads.AddRange(Enumerable.Repeat(0, (int)numOfKeyPads_2.Value).Select(x => new KeyPad(KEYPAD_TYPE.type_2)));
-                keyPads.AddRange(Enumerable.Repeat(0, (int)numOfKeyPads_3.Value).Select(x => new KeyPad(KEYPAD_TYPE.type_3)));                               
+                keyPads.AddRange(Enumerable.Repeat(0, (int)numOfKeyPads_1.Value).Select(x => new KeyPad(KEYPAD_TYPE.KeypadCatogory_Keypad_5_plus_1)));
+                keyPads.AddRange(Enumerable.Repeat(0, (int)numOfKeyPads_2.Value).Select(x => new KeyPad(KEYPAD_TYPE.KeypadCatogory_Keypad_8_plus_2)));
+                keyPads.AddRange(Enumerable.Repeat(0, (int)numOfKeyPads_3.Value).Select(x => new KeyPad(KEYPAD_TYPE.KeypadCatogory_Keypad_10_plus_2)));                               
 
                 dataModals.ecus = ecus;
                 dataModals.keyPads = keyPads;

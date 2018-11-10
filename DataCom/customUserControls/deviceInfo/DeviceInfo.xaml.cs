@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataCom.globalDataStore;
+using DataCom.modals;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,17 +22,42 @@ namespace DataCom.customUserControls.deviceInfo
     /// </summary>
     public partial class DeviceInfo : UserControl
     {
-        private string _myProperty;
+        private List<ECU> ecuList;
+        private List<KeyPad> keybadList;
 
         public DeviceInfo()
         {
             InitializeComponent();
+            keypads.Header = GlobalData.keypadname;
+            mainboards.Header = GlobalData.mainBoardName;
         }
 
-        public string MyProperty
+        public void setEcu(List<ECU> ecus)
         {
-            get { return _myProperty; }
-            set { _myProperty = value; }
+            this.ecuList = ecus;
+            List<string> list = ecus.Select(o => o.uuid).ToList();
+            this.Dispatcher.Invoke(() =>
+            {
+                mainboardList.Items.Clear();
+                foreach (string s in list)
+                {
+                    mainboardList.Items.Add(s);
+                }
+            });
+        }
+
+        public void setKeyPad(List<KeyPad> keybadList)
+        {
+            this.keybadList = keybadList;
+            List<string> list = keybadList.Select(o => o.uuid).ToList();
+            this.Dispatcher.Invoke(() =>
+            {
+                keypadList.Items.Clear();
+                foreach (string s in list)
+                {
+                    keypadList.Items.Add(s);
+                }
+            });
         }
     }
 }

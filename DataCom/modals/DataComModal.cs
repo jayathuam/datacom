@@ -11,8 +11,8 @@ namespace DataCom.modals
 
         public DataComModal()
         {
-            List<ECU> ecus = new List<ECU>();
-            List<KeyPad> keyPads = new List<KeyPad>();
+            ecus = new List<ECU>();
+            keyPads = new List<KeyPad>();
         }
 
         public string comment { get; set; }

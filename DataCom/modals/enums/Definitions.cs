@@ -10,17 +10,17 @@ namespace DataCom.modals.enums
     {
         public enum ECU_TYPE
         {
-            type_1 = 1,
-            type_2,
-            type_3,
-            type_4
+            MainboardCatogory_System_1 = 0,
+            MainboardCatogory_System_2,
+            MainboardCatogory_System_3,
+            MainboardCatogory_System_4,
         }
 
         public enum KEYPAD_TYPE
         {
-            type_1 = 1,
-            type_2,
-            type_3            
+            KeypadCatogory_Keypad_10_plus_2 = 0,
+            KeypadCatogory_Keypad_8_plus_2,
+            KeypadCatogory_Keypad_5_plus_1,
         }
 
         public enum POWER_SOURCE
