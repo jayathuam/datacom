@@ -35,5 +35,31 @@ namespace DataCom.modals.enums
             Positive_Input = 1,
             Negative_Input            
         }
+
+        public enum OUTPUT_ACTIVATOR
+        {
+            Always_Off = 0,
+            Always_On,
+            Button,
+            Ext_Input,
+            Analog_Input,
+            Combine_Input,
+            Events
+        }
+
+        public enum CONDITION_SOURCE
+        {
+            None = 0,
+            ExtInput,
+            AnalogInput,
+            CombineInput,
+            Event
+        }
+
+        public enum SOURCE_CONDITIONS
+        {
+            Low = 0,
+            High
+        }
     }
 }

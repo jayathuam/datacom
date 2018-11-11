@@ -7,19 +7,27 @@
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="DataCom.customUserControls.deviceInfo.DeviceInfo"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
-    <Grid>
-        <StackPanel x:Name="StackPanel1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="590">
+    <Grid>        
+        <StackPanel x:Name="StackPanel1" HorizontalAlignment="Left" VerticalAlignment="Top" MaxHeight="400">
             <Expander x:Name="mainboards" Header="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="580" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}">
                 <Grid>
-                    <ListView x:Name="mainboardList" Background="{x:Null}" />
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="300">
+                        <ListView x:Name="mainboardList" Background="{x:Null}" MouseUp="mainboardList_MouseUp"/>
+                    </ScrollViewer>
                 </Grid>
             </Expander>
             <Expander x:Name="keypads" Header="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="580" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}">
                 <Grid>
-                    <ListView x:Name="keypadList" Background="{x:Null}" />
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="300">
+                        <ListView x:Name="keypadList" Background="{x:Null}" MouseUp="keypadList_MouseUp" />
+                    </ScrollViewer>
                 </Grid>
             </Expander>
-        </StackPanel>
-        <Grid HorizontalAlignment="Left" Height="208" Margin="10,282,0,0" VerticalAlignment="Top" Width="402"/>
+        </StackPanel>        
+        <Grid HorizontalAlignment="Left" Height="208" Margin="10,0,0,15" VerticalAlignment="Bottom" Width="402">
+            <StackPanel Name="detalPanel" VerticalAlignment="Top" HorizontalAlignment="Left">                
+            </StackPanel>
+        </Grid>
+        <Image x:Name="image" HorizontalAlignment="Right" Height="100" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="100"/>
     </Grid>
 </UserControl>

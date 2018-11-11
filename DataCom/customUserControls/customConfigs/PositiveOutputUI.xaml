@@ -4,29 +4,67 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DataCom.customUserControls.customConfigs"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"        
              mc:Ignorable="d" 
-             Height="auto" Width="auto">
+             Height="1000" Width="auto">
     <Grid>
-        <Label x:Name="label" Content="Activator" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="activatorCmb" HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top" Width="166"/>
-        <Label x:Name="label_Copy" Content="Active Time" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="activeTimeTxt" HorizontalAlignment="Left" Height="23" Margin="189,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-        <Label x:Name="label_Copy1" Content="Seconds (0 always on)" HorizontalAlignment="Left" Margin="477,41,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label_Copy2" Content="Condition Source" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="conditionSourceCmb" HorizontalAlignment="Left" Margin="189,72,0,0" VerticalAlignment="Top" Width="166"/>
-        <Label x:Name="label_Copy3" Content="Turn On When Source is" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="sourceOnCmb" HorizontalAlignment="Left" Margin="189,103,0,0" VerticalAlignment="Top" Width="166"/>
-        <Label x:Name="label_Copy4" Content="Turn Off When Source is" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="sourceOffCmb" HorizontalAlignment="Left" Margin="189,134,0,0" VerticalAlignment="Top" Width="166"/>
-        <Label x:Name="label_Copy5" Content="Voltage Monitoring" HorizontalAlignment="Left" Margin="10,179,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label_Copy6" Content="Voltage Source" HorizontalAlignment="Left" Margin="9,221,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="voltageSourceCmb" HorizontalAlignment="Left" Margin="189,221,0,0" VerticalAlignment="Top" Width="166"/>
-        <Label x:Name="label_Copy7" Content="Minimum Voltage" HorizontalAlignment="Left" Margin="10,252,0,0" VerticalAlignment="Top"/>
-        <Slider x:Name="minVoltSlider" HorizontalAlignment="Left" Margin="189,262,0,0" VerticalAlignment="Top" Width="271"/>
-        <Label x:Name="minVoltLbl" Content="0 V" HorizontalAlignment="Left" Margin="513,252,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label_Copy8" Content="Maximum Voltage" HorizontalAlignment="Left" Margin="10,283,0,0" VerticalAlignment="Top"/>
-        <Slider x:Name="maxVoltSlider" HorizontalAlignment="Left" Margin="189,293,0,0" VerticalAlignment="Top" Width="271"/>
-        <Label x:Name="maxVoltLbl" Content="0 V" HorizontalAlignment="Left" Margin="513,283,0,0" VerticalAlignment="Top"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="191*"/>
+            <RowDefinition Height="770*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+          Grid.Column="0"
+          Background="#2b5797" />
+
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Test Configurations" Style="{DynamicResource MetroCircleButtonStyle}" Margin="10,5,0,5" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Center" Grid.Row="0" HorizontalAlignment="Left" Width="30">
+            <iconPacks:FontAwesome Width="10" Height="10" Kind="UploadSolid" />
+        </Button>
+
+        <Label x:Name="label" Content="Activator" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1" />
+        <ComboBox x:Name="activatorCmb" HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top" Width="166" Grid.Row="1" 
+         mah:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" mah:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF"/>
+
+
+        <Label x:Name="label_Copy" Content="Active Time" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label x:Name="label_Copy31" Content="Seconds" HorizontalAlignment="Left" Margin="374,41,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Controls:NumericUpDown Name="numOfKeyPads_1" Minimum = "0" Maximum = "100" Interval = "1" Width="166" Height="20" Margin="189,41,0,0" 
+        HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="0" HasDecimals="False" Grid.Row="1" BorderBrush="#FF2D89EF"/>
+
+        <Label x:Name="label_Copy2" Content="Condition Source" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <ComboBox x:Name="conditionSourceCmb" HorizontalAlignment="Left" Margin="189,72,0,0" VerticalAlignment="Top" Width="166"  Grid.Row="1" 
+         mah:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" mah:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF"
+                  SelectionChanged="conditionSourceCmb_SelectionChanged"/>
+
+        <Label x:Name="label_Copy1" Content="Source Index" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <ComboBox x:Name="sourceIndexCMB" HorizontalAlignment="Left" Margin="189,103,0,0" VerticalAlignment="Top" Width="166"  Grid.Row="1" 
+            Controls:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" Controls:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF"
+                  ItemsSource="{Binding IndexItems}"/>
+
+        <Label x:Name="label_Copy3" Content="Turn On When Source is" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <ComboBox x:Name="sourceOnCmb" HorizontalAlignment="Left" Margin="189,134,0,0" VerticalAlignment="Top" Width="166" Grid.Row="1"/>
+        <Label x:Name="label_Copy4" Content="Turn Off When Source is" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top"  Grid.Row="1"/>
+        <ComboBox x:Name="sourceOffCmb" HorizontalAlignment="Left" Margin="189,165,0,0" VerticalAlignment="Top" Width="166"  Grid.Row="1"/>
+
+        <Label x:Name="label_Copy5" Content="Voltage Monitoring" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+
+        <Label x:Name="label_Copy6" Content="Voltage Source" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+        <ComboBox x:Name="voltageSourceCmb" HorizontalAlignment="Left" Margin="189,60,0,0" VerticalAlignment="Top" Width="166" Grid.Row="2"/>
+
+        <Label x:Name="label_Copy7" Content="Minimum Voltage" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+        <Slider x:Name="minVoltSlider" HorizontalAlignment="Left" Margin="189,97,0,0" VerticalAlignment="Top" Width="271" Grid.Row="2" Minimum="1" Maximum="30" SmallChange="3" />
+        <Label x:Name="minVoltLbl" Content="0 V" HorizontalAlignment="Left" Margin="487,91,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+        <Label x:Name="label_Copy8" Content="Maximum Voltage" HorizontalAlignment="Left" Margin="10,283,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+        <Slider x:Name="maxVoltSlider" HorizontalAlignment="Left" Margin="189,293,0,0" VerticalAlignment="Top" Width="271" Grid.Row="2"/>
+        <Label x:Name="maxVoltLbl" Content="0 V" HorizontalAlignment="Left" Margin="513,283,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+
+        <!--
+        
+        
+        
         <Label x:Name="label_Copy9" Content="LED Settings for Under Voltage" HorizontalAlignment="Left" Margin="10,314,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label_Copy10" Content="Frequency" HorizontalAlignment="Left" Margin="12,345,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="voltageSourceCmb_Copy" HorizontalAlignment="Left" Margin="189,345,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.59,5.462"/>
@@ -67,6 +105,9 @@
         <Slider x:Name="maxVoltSlider_Copy3" HorizontalAlignment="Left" Margin="189,906,0,0" VerticalAlignment="Top" Width="271"/>
         <Label x:Name="maxVoltLbl_Copy3" Content="0" HorizontalAlignment="Left" Margin="513,896,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label_Copy30" Content="Load Shading" HorizontalAlignment="Left" Margin="9,943,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="voltageSourceCmb_Copy8" HorizontalAlignment="Left" Margin="189,943,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.59,5.462"/>
+        <ComboBox x:Name="voltageSourceCmb_Copy8" HorizontalAlignment="Left" Margin="189,943,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.59,5.462"/>-->
+
+
+
     </Grid>
 </UserControl>

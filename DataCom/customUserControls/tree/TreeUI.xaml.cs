@@ -36,7 +36,7 @@ namespace DataCom.customUserControls.tree
 
         private void treeItem_Selected(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            //TreeViewItem item = sender as TreeViewItem;
+            //TreeViewItem item = sender as TreeViewItem;           
             if (typeof(LoadShading).Equals((e.NewValue.GetType())))
             {
                 LoadShadingUI item = new LoadShadingUI((LoadShading)e.NewValue);
@@ -57,7 +57,10 @@ namespace DataCom.customUserControls.tree
             }
             else if (typeof(PositiveOutput).Equals((e.NewValue.GetType())))
             {
-                PositiveOutputUI item = new PositiveOutputUI((PositiveOutput)e.NewValue);
+                //typeof(ECU).Equals(e.)
+                TreeViewItem x = (TreeViewItem)e.NewValue;
+                ECU ecu = (ECU) ((TreeViewItem) x.Parent).Parent;                
+                PositiveOutputUI item = new PositiveOutputUI((PositiveOutput)e.NewValue, ecu);
                 item.Width = mainWindow.startupGrid.ActualWidth;
                 mainWindow.addChildToPanel(item);
             }
