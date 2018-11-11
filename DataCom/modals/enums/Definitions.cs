@@ -61,5 +61,21 @@ namespace DataCom.modals.enums
             Low = 0,
             High
         }
+
+        public enum LOAD_SHADING
+        {
+            Normal_Voltage = 0,
+            Loadshading_Level_1,
+            Loadshading_Level_2
+        }
+
+        public enum TARGET_ACTION
+        {
+            Off = 0,
+            On,
+            Toggle,
+            Push_On_Release_On,
+            Push_Off_Release_On
+        }
     }
 }

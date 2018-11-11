@@ -5,14 +5,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using static DataCom.modals.enums.Definitions;
 
 namespace DataCom.modals
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class AnalogInput : TreeViewItem
     {
-        private int minVoltage;
-        private int maxVoltage;
+        private double minVoltage;
+        private double maxVoltage;
+
+        [JsonProperty]
+        public TARGET_ACTION TargetAction { get; set; }
+
+        [JsonProperty]
+        public int Index { get; set; }
+
+        public AnalogInput(int index)
+        {
+            this.Index = index;
+        }
 
         public AnalogInput()
         {
@@ -29,14 +41,14 @@ namespace DataCom.modals
         }
 
         [JsonProperty]
-        public int MinVoltage
+        public double MinVoltage
         {
             get { return minVoltage; }
             set { minVoltage = value; }
         }
 
         [JsonProperty]
-        public int MaxVoltage
+        public double MaxVoltage
         {
             get { return maxVoltage; }
             set { maxVoltage = value; }

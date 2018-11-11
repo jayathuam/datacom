@@ -11,6 +11,7 @@ namespace DataCom.modals
     [JsonObject(MemberSerialization.OptIn)]
     public class NegativeOutput : TreeViewItem
     {
+        public int ShortAddress { get; set; }
         public NegativeOutput()
         {
             Background = null;           

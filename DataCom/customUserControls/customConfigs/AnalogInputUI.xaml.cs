@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static DataCom.modals.enums.Definitions;
 
 namespace DataCom.customUserControls.customConfigs
 {
@@ -30,6 +31,7 @@ namespace DataCom.customUserControls.customConfigs
             this.analogInput = analogInput;
             this.DataContext = analogInput;
             this.serial = serial;
+            targetActionCmb.ItemsSource = Enum.GetValues(typeof(TARGET_ACTION));
             serial.Analoginputevent += event_recived;
         }
 

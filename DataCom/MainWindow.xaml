@@ -66,8 +66,9 @@
                 </MenuItem>
             </Controls:DropDownButton.Items>
         </Controls:DropDownButton>
-        <StackPanel Name="controPanel" HorizontalAlignment="Left" Height="auto" Margin="0" Grid.Row="1" VerticalAlignment="Top" Width="auto" Grid.Column="1"/>
-
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1" HorizontalAlignment="Left" Height="auto" Margin="0" Grid.Row="1" VerticalAlignment="Top" Width="auto">
+            <StackPanel Name="controPanel" HorizontalAlignment="Left" Height="auto" Margin="0" Grid.Row="1" VerticalAlignment="Top" Width="auto" Grid.Column="1"/>
+        </ScrollViewer>
     </Grid>
 
     <!--flyout for device information-->

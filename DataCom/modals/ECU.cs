@@ -98,7 +98,7 @@ namespace DataCom.modals
 
             for (int i = 0; i < positive; i++)
             {
-                PositiveOutput item = new PositiveOutput();
+                PositiveOutput item = new PositiveOutput(i);                
                 positiveList.Add(item);
             }
 
@@ -116,7 +116,7 @@ namespace DataCom.modals
 
             for (int i = 0; i < analog; i++)
             {
-                AnalogInput item = new AnalogInput();
+                AnalogInput item = new AnalogInput(i);
                 analogList.Add(item);
             }
 

@@ -31,22 +31,26 @@ namespace DataCom.customUserControls.customConfigs
             InitializeComponent();
             this.positiveOutput = positiveOutput;
             this.parent = parent;
+            this.DataContext = positiveOutput;
             IndexItems = new List<string>();
             activatorCmb.ItemsSource = Enum.GetValues(typeof(OUTPUT_ACTIVATOR));
             conditionSourceCmb.ItemsSource = Enum.GetValues(typeof(CONDITION_SOURCE));
             sourceConditions = Enumerable.Range(0, 31).ToList();
+            voltageSourceCmb.ItemsSource = parent.analogList.Select(o => o.Header.ToString()).ToList();
+            voltageSourceCmb.SelectedIndex = positiveOutput.VoltageSource;
+            loadShadingCmb.ItemsSource = Enum.GetValues(typeof(LOAD_SHADING));
         }        
 
         private void conditionSourceCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CONDITION_SOURCE item = (CONDITION_SOURCE)conditionSourceCmb.SelectedItem;
-            if(item == CONDITION_SOURCE.None)
+            if (item == CONDITION_SOURCE.None)
             {
                 sourceIndexCMB.IsEnabled = false;
                 sourceOnCmb.IsEnabled = false;
                 sourceOffCmb.IsEnabled = false;
             }
-            else if(item == CONDITION_SOURCE.ExtInput)
+            else if (item == CONDITION_SOURCE.ExtInput)
             {
                 sourceIndexCMB.IsEnabled = true;
                 sourceOnCmb.IsEnabled = true;
@@ -54,8 +58,35 @@ namespace DataCom.customUserControls.customConfigs
                 IndexItems.Clear();
                 IndexItems = parent.externalList.Select(o => o.Header.ToString()).ToList();
                 sourceIndexCMB.ItemsSource = IndexItems;
+                try
+                {
+                    sourceIndexCMB.SelectedItem = IndexItems[positiveOutput.SourceIndex];
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    positiveOutput.SourceIndex = 0;
+                    sourceIndexCMB.SelectedItem = IndexItems[positiveOutput.SourceIndex];
+                }
                 sourceOnCmb.ItemsSource = Enum.GetValues(typeof(SOURCE_CONDITIONS));
                 sourceOffCmb.ItemsSource = Enum.GetValues(typeof(SOURCE_CONDITIONS));
+                try
+                {
+                    sourceOnCmb.SelectedItem = (SOURCE_CONDITIONS)positiveOutput.TurnOnWhen;                    
+                    sourceOffCmb.SelectedItem = (SOURCE_CONDITIONS)positiveOutput.TurnOffWhen;
+                    if (sourceOnCmb.SelectedItem == null || sourceOffCmb.SelectedItem ==null)
+                    {
+                        throw new ArgumentOutOfRangeException();
+                    }
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    positiveOutput.TurnOnWhen = 0;
+                    positiveOutput.TurnOffWhen = 0;
+                    sourceOnCmb.SelectedItem = (SOURCE_CONDITIONS)positiveOutput.TurnOnWhen;
+                    sourceOffCmb.SelectedItem = (SOURCE_CONDITIONS)positiveOutput.TurnOffWhen;
+                }
+
+
             }
             else if (item == CONDITION_SOURCE.AnalogInput)
             {
@@ -65,8 +96,35 @@ namespace DataCom.customUserControls.customConfigs
                 IndexItems.Clear();
                 IndexItems = parent.analogList.Select(o => o.Header.ToString()).ToList();
                 sourceIndexCMB.ItemsSource = IndexItems;
+                try
+                {
+                    sourceIndexCMB.SelectedItem = IndexItems[positiveOutput.SourceIndex];
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    positiveOutput.SourceIndex = 0;
+                    sourceIndexCMB.SelectedItem = IndexItems[positiveOutput.SourceIndex];
+                }
                 sourceOnCmb.ItemsSource = sourceConditions;
+                try
+                {
+                    sourceOnCmb.SelectedItem = sourceConditions[positiveOutput.TurnOnWhen];
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    positiveOutput.TurnOnWhen = 0;
+                    sourceOnCmb.SelectedItem = sourceConditions[positiveOutput.TurnOnWhen];
+                }
                 sourceOffCmb.ItemsSource = sourceConditions;
+                try
+                {
+                    sourceOffCmb.SelectedItem = sourceConditions[positiveOutput.TurnOffWhen];
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    positiveOutput.TurnOffWhen = 0;
+                    sourceOffCmb.SelectedItem = sourceConditions[positiveOutput.TurnOffWhen];
+                }
             }
             else if (item == CONDITION_SOURCE.CombineInput)
             {
@@ -76,8 +134,33 @@ namespace DataCom.customUserControls.customConfigs
                 IndexItems.Clear();
                 IndexItems = parent.combineList.Select(o => o.Header.ToString()).ToList();
                 sourceIndexCMB.ItemsSource = IndexItems;
+                try
+                {
+                    sourceIndexCMB.SelectedItem = IndexItems[positiveOutput.SourceIndex];
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    positiveOutput.SourceIndex = 0;
+                    sourceIndexCMB.SelectedItem = IndexItems[positiveOutput.SourceIndex];
+                }
                 sourceOnCmb.ItemsSource = Enum.GetValues(typeof(SOURCE_CONDITIONS));
                 sourceOffCmb.ItemsSource = Enum.GetValues(typeof(SOURCE_CONDITIONS));
+                try
+                {
+                    sourceOnCmb.SelectedItem = (SOURCE_CONDITIONS)positiveOutput.TurnOnWhen;
+                    sourceOffCmb.SelectedItem = (SOURCE_CONDITIONS)positiveOutput.TurnOffWhen;
+                    if (sourceOnCmb.SelectedItem == null || sourceOffCmb.SelectedItem == null)
+                    {
+                        throw new ArgumentOutOfRangeException();
+                    }
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    positiveOutput.TurnOnWhen = 0;
+                    positiveOutput.TurnOffWhen = 0;
+                    sourceOnCmb.SelectedItem = (SOURCE_CONDITIONS)positiveOutput.TurnOnWhen;
+                    sourceOffCmb.SelectedItem = (SOURCE_CONDITIONS)positiveOutput.TurnOffWhen;
+                }
             }
             else if (item == CONDITION_SOURCE.Event)
             {
@@ -86,6 +169,26 @@ namespace DataCom.customUserControls.customConfigs
                 sourceOnCmb.IsEnabled = false;
                 sourceOffCmb.IsEnabled = false;
             }
+        }
+
+        private void sourceIndexCMB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            positiveOutput.SourceIndex = sourceIndexCMB.SelectedIndex;
+        }
+
+        private void sourceOnCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            positiveOutput.TurnOnWhen = sourceOnCmb.SelectedIndex;
+        }
+
+        private void sourceOffCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            positiveOutput.TurnOffWhen = sourceOffCmb.SelectedIndex;
+        }
+
+        private void voltageSourceCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            positiveOutput.VoltageSource = voltageSourceCmb.SelectedIndex;
         }
     }
 }
