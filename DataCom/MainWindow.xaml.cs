@@ -146,7 +146,7 @@ namespace DataCom
 
         public void populateTree()
         {
-            treeview.init(globalData, serial, this);
+            treeview.init(globalData, serial, this, commandHandler);
         }
 
         public void addChildToPanel(UIElement item)

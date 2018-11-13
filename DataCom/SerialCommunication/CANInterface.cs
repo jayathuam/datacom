@@ -49,7 +49,7 @@ namespace DataCom.SerialCommunication
             CANError errorcode = CANError.CAN_ERROR_NONE;
             UInt32 extendedID = ((UInt32)buff[0] << 24) + ((UInt32)buff[1] << 16) + ((UInt32)buff[2] << 8) + (UInt32)buff[3];
 
-            packet.Packet_type = (CANPacket.Pkt_Type_t)((extendedID >> 20) & 0x03);
+            packet.Packet_type = (CANPacket.Pkt_Type_t)((extendedID >> 24) & 0x03);
             packet.Packet_id = ((extendedID >> 16) & 0x0F);
             packet.Source_address = (extendedID >> 8) & 0xFF;
             packet.Destination_address = extendedID & 0xFF;
@@ -75,7 +75,7 @@ namespace DataCom.SerialCommunication
             UInt32 extId = (can_packet.Destination_address & 0xFF) |
                                         ((can_packet.Source_address & 0xFF) << 8) |
                                         (((UInt32)can_packet.Packet_id & 0xF) << 16) |
-                                        ((UInt32)can_packet.Packet_type & 0x03) << 20;
+                                        ((UInt32)can_packet.Packet_type & 0x03) << 24;
 
             UInt16 buffIdx = 0;
             serialPacket.Buffer[buffIdx++] = (byte)(extId >> 24);

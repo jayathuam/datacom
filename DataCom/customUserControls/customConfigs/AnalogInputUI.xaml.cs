@@ -25,14 +25,17 @@ namespace DataCom.customUserControls.customConfigs
     {
         private AnalogInput analogInput;
         private Serial serial;
-        public AnalogInputUI(AnalogInput analogInput, Serial serial)
+        private ECU ecu;
+        public AnalogInputUI(AnalogInput analogInput, ECU ecu, Serial serial)
         {
             InitializeComponent();
             this.analogInput = analogInput;
+            this.ecu = ecu;
             this.DataContext = analogInput;
             this.serial = serial;
             targetActionCmb.ItemsSource = Enum.GetValues(typeof(TARGET_ACTION));
             serial.Analoginputevent += event_recived;
+            cutomtree.draw(ecu, analogInput.SelectedOutputs);
         }
 
         private void event_recived(object sender, string e)

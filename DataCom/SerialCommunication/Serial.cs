@@ -18,6 +18,7 @@ namespace DataCom.SerialCommunication
         private TransportLayer transportLayer;
 
         public event EventHandler<string> Analoginputevent;
+        public event EventHandler<string> PositiveOutputtevent;
         public event EventHandler<bool> deviceInfoEvent;
 
         public Serial(GlobalData globalData, TransportLayer transportLayer)
@@ -132,5 +133,8 @@ namespace DataCom.SerialCommunication
         {
             return serialPort.SendMessage(message);
         }
+
+        //clear all invocations
+        //myDlgHandler.GetInvocationList()
     }
 }

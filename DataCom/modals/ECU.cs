@@ -104,7 +104,7 @@ namespace DataCom.modals
 
             for (int i = 0; i < negative; i++)
             {
-                NegativeOutput item = new NegativeOutput();
+                NegativeOutput item = new NegativeOutput(i);
                 negativeList.Add(item);
             }
 

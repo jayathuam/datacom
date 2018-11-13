@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using DataCom.customUserControls.customTree;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace DataCom.modals
         public AnalogInput(int index)
         {
             this.Index = index;
+            SelectedOutputs = new EffectedOutput();
         }
 
         public AnalogInput()
@@ -31,6 +33,7 @@ namespace DataCom.modals
             Background = null;
             minVoltage = 0;
             maxVoltage = 0;
+            SelectedOutputs = new EffectedOutput();            
         }
         public AnalogInput(string header)
         {
@@ -38,6 +41,7 @@ namespace DataCom.modals
             Background = null;
             minVoltage = 0;
             maxVoltage = 0;
+            SelectedOutputs = new EffectedOutput();            
         }
 
         [JsonProperty]
@@ -60,5 +64,8 @@ namespace DataCom.modals
             get { return Header == null ? null : Header.ToString(); }
             set { Header = value; }
         }
+
+        [JsonProperty]
+        public EffectedOutput SelectedOutputs { get; set; }
     }
 }

@@ -64,7 +64,7 @@ namespace DataCom.modals.enums
 
         public enum LOAD_SHADING
         {
-            Normal_Voltage = 0,
+            Loadeshading_Disabled = 0,
             Loadshading_Level_1,
             Loadshading_Level_2
         }

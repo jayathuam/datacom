@@ -30,7 +30,7 @@ namespace DataCom.modals
         [JsonProperty]
         public int VoltageSource { get; set; }
         [JsonProperty]
-        public double MinVoltage { get; set; }
+        public double MinVoltage { get; set;  }
         [JsonProperty]
         public double MaxVoltage { get; set; }
         [JsonProperty]
@@ -65,6 +65,18 @@ namespace DataCom.modals
         public int LEDOverCurrBlink { get; set; }
         [JsonProperty]
         public int LEDOverCurrBright { get; set; }
+
+        [JsonProperty]
+        public int LEDOutputErrFreq { get; set; }
+        [JsonProperty]
+        public int LEDOutputErrBlink { get; set; }
+        [JsonProperty]
+        public int LEDOutputErrBright { get; set; }
+
+        [JsonProperty]
+        public bool VoltageMonitor { get; set; }
+        [JsonProperty]
+        public bool CurrentMonitor { get; set; }
 
         [JsonProperty]
         public LOAD_SHADING LoadShading { get; set; }

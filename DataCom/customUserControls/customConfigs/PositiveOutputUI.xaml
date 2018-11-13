@@ -12,9 +12,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="191"/>
-            <RowDefinition Height="391"/>
-            <RowDefinition Height="365.5"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
@@ -23,9 +23,12 @@
           Background="#2b5797" >
             <Label x:Name="label_Copy33" Content="Custom Label" HorizontalAlignment="Right" Margin="0,0,222,0" VerticalAlignment="Center" Foreground="White" />
             <TextBox x:Name="textBox" Height="22" Margin="0,0,32,0" TextWrapping="Wrap" HorizontalAlignment="Right" Width="175" Text="{Binding CustomLabel}"/>
-        </Grid>
+            <Label x:Name="positiveCurrLbl" Content="1000" HorizontalAlignment="Right" Margin="0,2,367,2" VerticalAlignment="Center" Foreground="#FFEC4D4D" FontSize="20" />
+            <Label x:Name="label_Copy17" Content="Positive Current" HorizontalAlignment="Right" Margin="0,0,431,0" VerticalAlignment="Center" Foreground="White" FontSize="16" />
+        </Grid>   
 
-        <Button Command="{Binding EditDetailCommand}" ToolTip="Test Configurations" Style="{DynamicResource MetroCircleButtonStyle}" Margin="10,0,0,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Center" Grid.Row="0" HorizontalAlignment="Left" Width="30">
+
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Test Configurations" Style="{DynamicResource MetroCircleButtonStyle}" Margin="10,0,0,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Center" Grid.Row="0" HorizontalAlignment="Left" Width="30" Click="Button_Click">
             <iconPacks:FontAwesome Width="10" Height="10" Kind="UploadSolid" />
         </Button>
 
@@ -38,109 +41,126 @@
         <Label x:Name="label_Copy31" Content="Seconds" HorizontalAlignment="Left" Margin="374,41,0,0" VerticalAlignment="Top" Grid.Row="1"/>
         <Controls:NumericUpDown Name="numOfKeyPads_1" Minimum = "0" Maximum = "100" Interval = "1" Width="166" Height="20" Margin="189,41,0,0" 
         HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="{Binding ActiveTime}" HasDecimals="False" Grid.Row="1" BorderBrush="#FF2D89EF"/>
+        <Border Margin="10,103,0,0" Grid.Row="1" HorizontalAlignment="Left" Width="345" Height="119" VerticalAlignment="Top">
+            <Grid>
 
-        <Label x:Name="label_Copy2" Content="Condition Source" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <ComboBox x:Name="conditionSourceCmb" HorizontalAlignment="Left" Margin="189,72,0,0" VerticalAlignment="Top" Width="166"  Grid.Row="1" 
-         mah:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" mah:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF"
-                  SelectionChanged="conditionSourceCmb_SelectionChanged" SelectedItem="{Binding ConditionSource}"/>
+                <Label x:Name="label_Copy2" Content="Condition Source" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <ComboBox x:Name="conditionSourceCmb" HorizontalAlignment="Left" Margin="179,0,0,0" VerticalAlignment="Top" Width="166" 
+                    Controls:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" Controls:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF"
+                    SelectionChanged="conditionSourceCmb_SelectionChanged" SelectedItem="{Binding ConditionSource}"/>
 
-        <Label x:Name="label_Copy1" Content="Source Index" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <ComboBox x:Name="sourceIndexCMB" HorizontalAlignment="Left" Margin="189,103,0,0" VerticalAlignment="Top" Width="166"  Grid.Row="1" 
-            Controls:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" Controls:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF"
-                  SelectionChanged="sourceIndexCMB_SelectionChanged"/>
+                <Label x:Name="label_Copy1" Content="Source Index" HorizontalAlignment="Left" Margin="0,31,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="sourceIndexCMB" HorizontalAlignment="Left" Margin="179,31,0,0" VerticalAlignment="Top" Width="166" 
+                    Controls:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" Controls:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF"
+                    SelectionChanged="sourceIndexCMB_SelectionChanged"/>
 
-        <Label x:Name="label_Copy3" Content="Turn On When Source is" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <ComboBox x:Name="sourceOnCmb" HorizontalAlignment="Left" Margin="189,134,0,0" VerticalAlignment="Top" Width="166" Grid.Row="1"
-                  mah:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" mah:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF" SelectionChanged="sourceOnCmb_SelectionChanged"/>
-        <Label x:Name="label_Copy4" Content="Turn Off When Source is" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top"  Grid.Row="1"/>
-        <ComboBox x:Name="sourceOffCmb" HorizontalAlignment="Left" Margin="189,165,0,0" VerticalAlignment="Top" Width="166"  Grid.Row="1"
-                  mah:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" mah:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF" SelectionChanged="sourceOffCmb_SelectionChanged"/>
+                <Label x:Name="label_Copy3" Content="Turn On When Source is" HorizontalAlignment="Left" Margin="0,62,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="sourceOnCmb" HorizontalAlignment="Left" Margin="179,62,0,0" VerticalAlignment="Top" Width="166" 
+                    Controls:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" Controls:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF" SelectionChanged="sourceOnCmb_SelectionChanged"/>
+                <Label x:Name="label_Copy4" Content="Turn Off When Source is" HorizontalAlignment="Left" Margin="0,93,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="sourceOffCmb" HorizontalAlignment="Left" Margin="179,93,0,0" VerticalAlignment="Top" Width="166"
+                    Controls:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" Controls:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF" SelectionChanged="sourceOffCmb_SelectionChanged"/>
+                <Slider x:Name="turnOnSlider" HorizontalAlignment="Left" Margin="179,68,-105,0" VerticalAlignment="Top" Width="271" Minimum="0" Maximum="30" Visibility="Hidden"
+            Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" IsSnapToTickEnabled="True"
+            Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" TickFrequency="0.1" LargeChange="0.1" ValueChanged="turnOnSlider_ValueChanged"/>
+                <Label x:Name="turnOnLbl" Content="{Binding Value, ElementName=turnOnSlider}" HorizontalAlignment="Left" Margin="477,62,-189,0" VerticalAlignment="Top" Foreground="#FF2B5797" Width="57" Visibility="Hidden"/>
+                <Slider x:Name="turnOffSlider" HorizontalAlignment="Left" Margin="179,99,-105,0" VerticalAlignment="Top" Width="271" IsSnapToTickEnabled="True" Visibility="Hidden"
+            Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF"
+            Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" Minimum="0" Maximum="30" TickFrequency="0.1" LargeChange="0.1" ValueChanged="turnOffSlider_ValueChanged"/>
+                <Label x:Name="trunOffLbl" Content="{Binding Value, ElementName=turnOffSlider}" HorizontalAlignment="Left" Margin="477,93,-189,0" VerticalAlignment="Top" Width="57" Foreground="#FF2B5797" Visibility="Hidden"/>
 
-        <Label x:Name="label_Copy5" Content="Voltage Monitoring" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+            </Grid>
+        </Border>
+
+        <CheckBox x:Name="voltEnable" Content="Voltage Monitoring" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Grid.Row="2" IsChecked="{Binding VoltageMonitor}"/>
 
         <Label x:Name="label_Copy6" Content="Voltage Source" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Grid.Row="2"/>
-        <ComboBox x:Name="voltageSourceCmb" HorizontalAlignment="Left" Margin="189,60,0,0" VerticalAlignment="Top" Width="166" Grid.Row="2"
+        <ComboBox x:Name="voltageSourceCmb" HorizontalAlignment="Left" Margin="189,60,0,0" VerticalAlignment="Top" Width="166" Grid.Row="2" IsEnabled="{Binding ElementName=voltEnable, Path=IsChecked}"
                   mah:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" mah:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF" SelectionChanged="voltageSourceCmb_SelectionChanged"/>
 
         <Label x:Name="label_Copy7" Content="Minimum Voltage" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Grid.Row="2"/>
-        <Slider x:Name="minVoltSlider" HorizontalAlignment="Left" Margin="189,97,0,0" VerticalAlignment="Top" Width="271" Grid.Row="2" Minimum="0" Maximum="30" 
+        <Slider x:Name="minVoltSlider" HorizontalAlignment="Left" Margin="189,97,0,0" VerticalAlignment="Top" Width="271" Grid.Row="2" Minimum="0" Maximum="30" IsEnabled="{Binding ElementName=voltEnable, Path=IsChecked}"
                 mah:SliderHelper.TrackValueFillBrush="#FF2B5797" mah:SliderHelper.TrackFillPressedBrush="#FF2D89EF" IsSnapToTickEnabled="True" Value="{Binding MinVoltage}"
                 mah:SliderHelper.TrackFillHoverBrush="#FF2D89EF" mah:SliderHelper.TrackFillBrush="#FF2D89EF" mah:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" mah:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" TickFrequency="0.1" LargeChange="0.1"/>
         <Label x:Name="minVoltLbl" Content="{Binding ElementName=minVoltSlider, Path=Value}" HorizontalAlignment="Left" Margin="487,91,0,0" VerticalAlignment="Top" Grid.Row="2" Foreground="#FF2B5797" Width="57"/>
 
         <Label x:Name="label_Copy8" Content="Maximum Voltage" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top" Grid.Row="2"/>
-        <Slider x:Name="maxVoltSlider" HorizontalAlignment="Left" Margin="189,128,0,0" VerticalAlignment="Top" Width="271" Grid.Row="2" IsSnapToTickEnabled="True"
+        <Slider x:Name="maxVoltSlider" HorizontalAlignment="Left" Margin="189,128,0,0" VerticalAlignment="Top" Width="271" Grid.Row="2" IsSnapToTickEnabled="True" IsEnabled="{Binding ElementName=voltEnable, Path=IsChecked}"
                 mah:SliderHelper.TrackValueFillBrush="#FF2B5797" mah:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Value="{Binding MaxVoltage}"
                 mah:SliderHelper.TrackFillHoverBrush="#FF2D89EF" mah:SliderHelper.TrackFillBrush="#FF2D89EF" mah:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" mah:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" Minimum="0" Maximum="30" TickFrequency="0.1" LargeChange="0.1"/>
         <Label x:Name="maxVoltLbl" Content="{Binding ElementName=maxVoltSlider, Path=Value}" HorizontalAlignment="Left" Margin="487,122,0,0" VerticalAlignment="Top" Grid.Row="2" Width="57" Foreground="#FF2B5797"/>
+        <Border Margin="10,153,0,0" Grid.Row="2" HorizontalAlignment="Left" Width="520" VerticalAlignment="Top" Height="120">
+            <Grid>
+                <Label x:Name="label_Copy9" Content="LED Settings for Under Voltage" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label x:Name="label_Copy10" Content="Frequency" HorizontalAlignment="Left" Margin="0,31,0,0" VerticalAlignment="Top"/>
+                <Slider x:Name="underVoltFreqSlider" HorizontalAlignment="Left" Margin="179,36,0,0" VerticalAlignment="Top" Width="271" IsSnapToTickEnabled="True" IsEnabled="{Binding ElementName=voltEnable, Path=IsChecked}"
+                    Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="7" Value="{Binding LEDUnderVoltageFreq}"
+                    Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" SmallChange="1"/>
+                <Label x:Name="voltFreqLbl" Content="{Binding Value, ElementName=underVoltFreqSlider}" HorizontalAlignment="Left" Margin="477,30,0,0" VerticalAlignment="Top" Width="43" Foreground="#FF2B5797"/>
 
-        <Label x:Name="label_Copy9" Content="LED Settings for Under Voltage" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" Grid.Row="2"/>
-        <Label x:Name="label_Copy10" Content="Frequency" HorizontalAlignment="Left" Margin="10,179,0,0" VerticalAlignment="Top" Grid.Row="2"/>
-        <Slider x:Name="underVoltFreqSlider" HorizontalAlignment="Left" Margin="189,185,0,0" VerticalAlignment="Top" Width="271" Grid.Row="2" IsSnapToTickEnabled="True"
-            Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="7" Value="{Binding LEDUnderVoltageFreq}"
+                <Label x:Name="label_Copy11" Content="Blink" HorizontalAlignment="Left" Margin="0,62,0,0" VerticalAlignment="Top"/>
+                <Slider x:Name="underVoltBlinkSlider" HorizontalAlignment="Left" Margin="179,67,0,0" VerticalAlignment="Top" Width="271" IsSnapToTickEnabled="True" IsEnabled="{Binding ElementName=voltEnable, Path=IsChecked}"
+                    Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="20" Value="{Binding LEDUnderVoltageBlink}"
+                    Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" SmallChange="1"/>
+                <Label x:Name="voltBlinkLbl" Content="{Binding Value, ElementName=underVoltBlinkSlider}" HorizontalAlignment="Left" Margin="477,61,0,0" VerticalAlignment="Top" Width="43" Foreground="#FF2B5797"/>
+
+                <Label x:Name="label_Copy12" Content="Brightness" HorizontalAlignment="Left" Margin="0,93,0,-5" VerticalAlignment="Top"/>
+                <Slider x:Name="underVoltBrightSlider" HorizontalAlignment="Left" Margin="179,98,0,0" VerticalAlignment="Top" Width="271" IsSnapToTickEnabled="True" IsEnabled="{Binding ElementName=voltEnable, Path=IsChecked}"
+                    Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="255" Value="{Binding LEDUnderVoltageBright}"
+                    Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" SmallChange="1"/>
+                <Label x:Name="voltBrightLbl" Content="{Binding Value, ElementName=underVoltBrightSlider}" HorizontalAlignment="Left" Margin="477,92,0,-4" VerticalAlignment="Top" Width="43" Foreground="#FF2B5797"/>
+
+            </Grid>
+        </Border>
+
+        <Label x:Name="label_Copy13" Content="LED Settings for Over Voltage" HorizontalAlignment="Left" Margin="10,278,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+        <Label x:Name="label_Copy14" Content="Frequency" HorizontalAlignment="Left" Margin="10,309,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+        <Slider x:Name="overVoltFreqSlider" HorizontalAlignment="Left" Margin="189,315,0,0" VerticalAlignment="Top" Width="271" Grid.Row="2" Value="{Binding LEDOverVoltageFreq}"
+            Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="7" IsSnapToTickEnabled="True" IsEnabled="{Binding ElementName=voltEnable, Path=IsChecked}"
             Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" SmallChange="1"/>
-        <Label x:Name="voltFreqLbl" Content="{Binding ElementName=underVoltFreqSlider, Path=Value}" HorizontalAlignment="Left" Margin="487,179,0,0" VerticalAlignment="Top" Grid.Row="2" Width="43" Foreground="#FF2B5797"/>
+        <Label x:Name="undervoltFreqLbl" Content="{Binding Value, ElementName=overVoltFreqSlider}" HorizontalAlignment="Left" Margin="487,309,0,0" VerticalAlignment="Top" Grid.Row="2" Width="43" Foreground="#FF2B5797"/>
 
-        <Label x:Name="label_Copy11" Content="Blink" HorizontalAlignment="Left" Margin="10,210,0,0" VerticalAlignment="Top" Grid.Row="2"/>
-        <Slider x:Name="underVoltBlinkSlider" HorizontalAlignment="Left" Margin="189,216,0,0" VerticalAlignment="Top" Width="271" Grid.Row="2" IsSnapToTickEnabled="True"
-            Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="20" Value="{Binding LEDUnderVoltageBlink}"
+        <Label x:Name="label_Copy15" Content="Blink" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+        <Slider x:Name="overVoltBlinkSlider" HorizontalAlignment="Left" Margin="189,346,0,0" VerticalAlignment="Top" Width="271" Grid.Row="2" Value="{Binding LEDOverVoltageBlink}"
+            Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="20" IsSnapToTickEnabled="True" IsEnabled="{Binding ElementName=voltEnable, Path=IsChecked}"
             Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" SmallChange="1"/>
-        <Label x:Name="voltBlinkLbl" Content="{Binding ElementName=underVoltBlinkSlider, Path=Value}" HorizontalAlignment="Left" Margin="487,210,0,0" VerticalAlignment="Top" Grid.Row="2" Width="43" Foreground="#FF2B5797"/>
+        <Label x:Name="overvoltBlinkLbl" Content="{Binding Value, ElementName=overVoltBlinkSlider}" HorizontalAlignment="Left" Margin="487,340,0,0" VerticalAlignment="Top" Grid.Row="2" Width="43" Foreground="#FF2B5797"/>
 
-        <Label x:Name="label_Copy12" Content="Brightness" HorizontalAlignment="Left" Margin="10,241,0,0" VerticalAlignment="Top" Grid.Row="2"/>
-        <Slider x:Name="underVoltBrightSlider" HorizontalAlignment="Left" Margin="189,247,0,0" VerticalAlignment="Top" Width="271" Grid.Row="2" IsSnapToTickEnabled="True"
-            Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="10" Value="{Binding LEDUnderVoltageBright}"
+        <Label x:Name="label_Copy16" Content="Brightness" HorizontalAlignment="Left" Margin="10,371,0,0" VerticalAlignment="Top" Grid.Row="2"/>
+        <Slider x:Name="overVoltBrightSlider" HorizontalAlignment="Left" Margin="189,377,0,0" VerticalAlignment="Top" Width="271" Grid.Row="2" Value="{Binding LEDOverVoltageBright}"
+            Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Maximum="255" IsSnapToTickEnabled="True" IsEnabled="{Binding ElementName=voltEnable, Path=IsChecked}"
             Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" SmallChange="1"/>
-        <Label x:Name="voltBrightLbl" Content="{Binding ElementName=underVoltBrightSlider, Path=Value}" HorizontalAlignment="Left" Margin="487,241,0,0" VerticalAlignment="Top" Grid.Row="2" Width="43" Foreground="#FF2B5797"/>
+        <Label x:Name="overvoltBrightLbl" Content="{Binding Value, ElementName=overVoltBrightSlider}" HorizontalAlignment="Left" Margin="487,371,0,0" VerticalAlignment="Top" Grid.Row="2" Width="43" Foreground="#FF2B5797"/>
 
-        <Label x:Name="label_Copy13" Content="LED Settings for Over Voltage" HorizontalAlignment="Left" Margin="10,272,0,0" VerticalAlignment="Top" Grid.Row="2"/>
-        <Label x:Name="label_Copy14" Content="Frequency" HorizontalAlignment="Left" Margin="10,303,0,0" VerticalAlignment="Top" Grid.Row="2"/>
-        <Slider x:Name="overVoltFreqSlider" HorizontalAlignment="Left" Margin="189,309,0,0" VerticalAlignment="Top" Width="271" Grid.Row="2" Value="{Binding LEDOverVoltageFreq}"
-            Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="7" IsSnapToTickEnabled="True"
-            Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" SmallChange="1"/>
-        <Label x:Name="undervoltFreqLbl" Content="{Binding Value, ElementName=overVoltFreqSlider}" HorizontalAlignment="Left" Margin="487,303,0,0" VerticalAlignment="Top" Grid.Row="2" Width="43" Foreground="#FF2B5797"/>
-
-        <Label x:Name="label_Copy15" Content="Blink" HorizontalAlignment="Left" Margin="10,334,0,0" VerticalAlignment="Top" Grid.Row="2"/>
-        <Slider x:Name="overVoltBlinkSlider" HorizontalAlignment="Left" Margin="189,340,0,0" VerticalAlignment="Top" Width="271" Grid.Row="2" Value="{Binding LEDOverVoltageBlink}"
-            Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="20" IsSnapToTickEnabled="True"
-            Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" SmallChange="1"/>
-        <Label x:Name="overvoltBlinkLbl" Content="{Binding Value, ElementName=overVoltBlinkSlider}" HorizontalAlignment="Left" Margin="487,334,0,0" VerticalAlignment="Top" Grid.Row="2" Width="43" Foreground="#FF2B5797"/>
-
-        <Label x:Name="label_Copy16" Content="Brightness" HorizontalAlignment="Left" Margin="10,365,0,0" VerticalAlignment="Top" Grid.Row="2"/>
-        <Slider x:Name="overVoltBrightSlider" HorizontalAlignment="Left" Margin="189,371,0,0" VerticalAlignment="Top" Width="271" Grid.Row="2" Value="{Binding LEDOverVoltageBright}"
-            Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Maximum="10" IsSnapToTickEnabled="True"
-            Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" SmallChange="1"/>
-        <Label x:Name="overvoltBrightLbl" Content="{Binding Value, ElementName=overVoltBrightSlider}" HorizontalAlignment="Left" Margin="487,365,0,0" VerticalAlignment="Top" Grid.Row="2" Width="43" Foreground="#FF2B5797"/>
-
-        <Label x:Name="label_Copy17" Content="Current Monitoring" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Grid.Row="3"/>
+        <CheckBox x:Name="currEnable" Content="Current Monitoring" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Grid.Row="3" IsChecked="{Binding CurrentMonitor}"/>
 
         <Label x:Name="label_Copy18" Content="Minimum Current" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Grid.Row="3"/>
-        <Controls:NumericUpDown x:Name="MinCurrent" Minimum = "0" Maximum = "100" Interval = "1" Width="166" Height="20" Margin="189,60,0,0" 
+        <Controls:NumericUpDown x:Name="MinCurrent" Minimum = "0" Maximum = "100" Interval = "1" Width="166" Height="20" Margin="189,60,0,0" IsEnabled="{Binding ElementName=currEnable, Path=IsChecked}"
             HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="{Binding MinimumCurrent}" HasDecimals="False" Grid.Row="3" BorderBrush="#FF2D89EF"/>
         <Label x:Name="label_Copy19" Content="A" HorizontalAlignment="Left" Margin="384,60,0,0" VerticalAlignment="Top" Grid.Row="3"/>
 
         <Label x:Name="label_Copy20" Content="Maximum Current" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Grid.Row="3"/>
-        <Controls:NumericUpDown x:Name="MaxCurrent" Minimum = "0" Maximum = "100" Interval = "1" Width="166" Height="20" Margin="189,91,0,0" 
+        <Controls:NumericUpDown x:Name="MaxCurrent" Minimum = "0" Maximum = "100" Interval = "1" Width="166" Height="20" Margin="189,91,0,0" IsEnabled="{Binding ElementName=currEnable, Path=IsChecked}"
             HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="{Binding MaxCurrent}" HasDecimals="False" Grid.Row="3" BorderBrush="#FF2D89EF"/>
         <Label x:Name="label_Copy21" Content="A" HorizontalAlignment="Left" Margin="384,91,0,0" VerticalAlignment="Top" Grid.Row="3"/>
 
         <Label x:Name="label_Copy22" Content="LED Settings for Under Current" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top" Grid.Row="3"/>
 
         <Label x:Name="label_Copy23" Content="Frequency" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="3" Margin="10,154,0,0"/>
-        <Slider x:Name="underCurrFreqSlider" HorizontalAlignment="Left" Margin="189,160,0,0" VerticalAlignment="Top" Width="271" Grid.Row="3" IsSnapToTickEnabled="True"
+        <Slider x:Name="underCurrFreqSlider" HorizontalAlignment="Left" Margin="189,160,0,0" VerticalAlignment="Top" Width="271" Grid.Row="3" IsSnapToTickEnabled="True" IsEnabled="{Binding ElementName=currEnable, Path=IsChecked}"
             Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="7" Value="{Binding LEDUnderCurrFreq}"
             Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" SmallChange="1"/>
         <Label x:Name="currFreqLbl" Content="{Binding Value, ElementName=underCurrFreqSlider}" HorizontalAlignment="Left" Margin="487,154,0,0" VerticalAlignment="Top" Grid.Row="3" Width="43" Foreground="#FF2B5797"/>
 
         <Label x:Name="label_Copy24" Content="Blink" HorizontalAlignment="Left" Margin="10,184,0,0" VerticalAlignment="Top" Grid.Row="3"/>
-        <Slider x:Name="underCurrBlinkSlider" HorizontalAlignment="Left" Margin="189,190,0,0" VerticalAlignment="Top" Width="271" Grid.Row="3" IsSnapToTickEnabled="True"
+        <Slider x:Name="underCurrBlinkSlider" HorizontalAlignment="Left" Margin="189,190,0,0" VerticalAlignment="Top" Width="271" Grid.Row="3" IsSnapToTickEnabled="True" IsEnabled="{Binding ElementName=currEnable, Path=IsChecked}"
             Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="20" Value="{Binding LEDUnderCurrBlink}"
             Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" SmallChange="1"/>
         <Label x:Name="currBlinkLbl" Content="{Binding Value, ElementName=underCurrBlinkSlider}" HorizontalAlignment="Left" Margin="487,184,0,0" VerticalAlignment="Top" Grid.Row="3" Width="43" Foreground="#FF2B5797"/>
 
         <Label x:Name="label_Copy25" Content="Brightness" HorizontalAlignment="Left" Margin="10,216,0,0" VerticalAlignment="Top" Grid.Row="3"/>
-        <Slider x:Name="underCurrBrightSlider" HorizontalAlignment="Left" Margin="189,222,0,0" VerticalAlignment="Top" Width="271" Grid.Row="3" IsSnapToTickEnabled="True"
-            Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="10" Value="{Binding LEDUnderCurrBright}"
+        <Slider x:Name="underCurrBrightSlider" HorizontalAlignment="Left" Margin="189,222,0,0" VerticalAlignment="Top" Width="271" Grid.Row="3" IsSnapToTickEnabled="True" IsEnabled="{Binding ElementName=currEnable, Path=IsChecked}"
+            Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="255" Value="{Binding LEDUnderCurrBright}"
             Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" SmallChange="1"/>
         <Label x:Name="currtBrightLbl" Content="{Binding Value, ElementName=underCurrBrightSlider}" HorizontalAlignment="Left" Margin="487,216,0,0" VerticalAlignment="Top" Grid.Row="3" Width="43" Foreground="#FF2B5797"/>
 
@@ -148,42 +168,53 @@
 
         <Label x:Name="label_Copy27" Content="Frequency" HorizontalAlignment="Left" Margin="10,278,0,0" VerticalAlignment="Top" Grid.Row="3"/>
         <Slider x:Name="overCurrFreqSlider" HorizontalAlignment="Left" Margin="189,284,0,0" VerticalAlignment="Top" Width="271" Grid.Row="3" Value="{Binding LEDOverCurrFreq}"
-            Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="7" IsSnapToTickEnabled="True"
+            Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="7" IsSnapToTickEnabled="True" IsEnabled="{Binding ElementName=currEnable, Path=IsChecked}"
             Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" SmallChange="1"/>
         <Label x:Name="overCurrFreqLbl" Content="{Binding Value, ElementName=overCurrFreqSlider}" HorizontalAlignment="Left" Margin="487,278,0,0" VerticalAlignment="Top" Grid.Row="3" Width="43" Foreground="#FF2B5797"/>
 
         <Label x:Name="label_Copy28" Content="Blink" HorizontalAlignment="Left" Margin="10,308,0,0" VerticalAlignment="Top" Grid.Row="3"/>
         <Slider x:Name="overCurrtBlinkSlider" HorizontalAlignment="Left" Margin="189,314,0,0" VerticalAlignment="Top" Width="271" Grid.Row="3" Value="{Binding LEDOverCurrBlink}"
-            Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="20" IsSnapToTickEnabled="True"
+            Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="20" IsSnapToTickEnabled="True" IsEnabled="{Binding ElementName=currEnable, Path=IsChecked}"
             Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" SmallChange="1"/>
         <Label x:Name="overCurrBlinkLbl" Content="{Binding Value, ElementName=overCurrtBlinkSlider}" HorizontalAlignment="Left" Margin="487,308,0,0" VerticalAlignment="Top" Grid.Row="3" Width="43" Foreground="#FF2B5797"/>
 
         <Label x:Name="label_Copy29" Content="Brightness" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top" Grid.Row="3" Grid.RowSpan="2"/>
         <Slider x:Name="overCurrBrightSlider" HorizontalAlignment="Left" Margin="189,346,0,0" VerticalAlignment="Top" Width="271" Grid.Row="3" Value="{Binding LEDOverCurrBright}"
-            Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Maximum="10" IsSnapToTickEnabled="True"
+            Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Maximum="255" IsSnapToTickEnabled="True" IsEnabled="{Binding ElementName=currEnable, Path=IsChecked}"
             Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" SmallChange="1"/>
         <Label x:Name="overCurrBrightLbl" Content="{Binding Value, ElementName=overCurrBrightSlider}" HorizontalAlignment="Left" Margin="487,340,0,0" VerticalAlignment="Top" Grid.Row="3" Width="43" Foreground="#FF2B5797" Grid.RowSpan="2"/>
 
         <Label x:Name="label_Copy30" Content="Load Shading" HorizontalAlignment="Left" Margin="10,19.5,0,0" VerticalAlignment="Top" Grid.Row="4"/>
-        <ComboBox x:Name="loadShadingCmb" HorizontalAlignment="Left" Margin="189,19.5,0,0" VerticalAlignment="Top" Width="166" Grid.Row="4"
+        <ComboBox x:Name="loadShadingCmb" HorizontalAlignment="Left" Margin="189,19.5,0,20" VerticalAlignment="Top" Width="166" Grid.Row="4"
             Controls:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" Controls:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF" SelectedItem="{Binding LoadShading}"/>
 
-        <Label x:Name="label_Copy32" Content="Startup Delay" HorizontalAlignment="Left" Margin="10,50.5,0,0" VerticalAlignment="Top" Grid.Row="4"/>
-        <Controls:NumericUpDown x:Name="startupDelay" Minimum = "0" Maximum = "100" Interval = "1" Width="166" Height="20" Margin="189,50.5,0,20" 
-            HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="{Binding StartupDelay}" HasDecimals="False" Grid.Row="4" BorderBrush="#FF2D89EF"/>
+        <Label x:Name="label_Copy32" Content="Startup Delay" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Controls:NumericUpDown x:Name="startupDelay" Minimum = "0" Maximum = "100" Interval = "1" Width="166" Height="20" Margin="189,72,0,0" 
+            HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="{Binding StartupDelay}" HasDecimals="False" Grid.Row="1" BorderBrush="#FF2D89EF"/>
+        <Border Margin="10,227,0,0" Grid.Row="1" HorizontalAlignment="Left" Width="520" Height="auto" VerticalAlignment="Top">
+            <Grid Height="120">
 
-        <!--    
-        
-        
-        
-        
-        
-       
-        
-        
-        <Label x:Name="label_Copy30" Content="Load Shading" HorizontalAlignment="Left" Margin="9,943,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="voltageSourceCmb_Copy8" HorizontalAlignment="Left" Margin="189,943,0,0" VerticalAlignment="Top" Width="166" RenderTransformOrigin="0.59,5.462"/>-->
+                <Label x:Name="label_Copy34" Content="LED Settings for Condition Mismatch" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label x:Name="label_Copy35" Content="Frequency" HorizontalAlignment="Left" Margin="0,31,0,0" VerticalAlignment="Top"/>
+                <Slider x:Name="errorFreqSlider" HorizontalAlignment="Left" Margin="179,37,0,0" VerticalAlignment="Top" Width="271" IsSnapToTickEnabled="True"
+                    Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="7" Value="{Binding LEDOutputErrFreq}"
+                    Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" SmallChange="1"/>
+                <Label x:Name="errFreqLbl" Content="{Binding Value, ElementName=errorFreqSlider}" HorizontalAlignment="Left" Margin="477,31,0,0" VerticalAlignment="Top" Width="43" Foreground="#FF2B5797"/>
 
+                <Label x:Name="label_Copy36" Content="Blink" HorizontalAlignment="Left" Margin="0,62,0,0" VerticalAlignment="Top"/>
+                <Slider x:Name="errorBlinkSlider" HorizontalAlignment="Left" Margin="179,67,0,0" VerticalAlignment="Top" Width="271" IsSnapToTickEnabled="True"
+                    Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="20" Value="{Binding LEDOutputErrBlink}"
+                    Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" SmallChange="1"/>
+                <Label x:Name="errBlinkLbl" Content="{Binding Value, ElementName=errorBlinkSlider}" HorizontalAlignment="Left" Margin="477,61,0,0" VerticalAlignment="Top" Width="43" Foreground="#FF2B5797"/>
+
+                <Label x:Name="label_Copy37" Content="Brightness" HorizontalAlignment="Left" Margin="0,93,0,-5" VerticalAlignment="Top"/>
+                <Slider x:Name="errorBrightSlider" HorizontalAlignment="Left" Margin="179,99,0,-1" VerticalAlignment="Top" Width="271" IsSnapToTickEnabled="True"
+                    Controls:SliderHelper.TrackValueFillBrush="#FF2B5797" Controls:SliderHelper.TrackFillPressedBrush="#FF2D89EF" Minimum="0" Maximum="255" Value="{Binding LEDOutputErrBright}"
+                    Controls:SliderHelper.TrackFillHoverBrush="#FF2D89EF" Controls:SliderHelper.TrackFillBrush="#FF2D89EF" Controls:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" Controls:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" SmallChange="1"/>
+                <Label x:Name="errBrightLbl" Content="{Binding Value, ElementName=errorBrightSlider}" HorizontalAlignment="Left" Margin="477,93,0,-5" VerticalAlignment="Top" Width="43" Foreground="#FF2B5797"/>
+
+            </Grid>
+        </Border>
 
 
     </Grid>
