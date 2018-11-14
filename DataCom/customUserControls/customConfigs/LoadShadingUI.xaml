@@ -4,17 +4,43 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DataCom.customUserControls.customConfigs"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
              Height="auto" Width="auto">
     <Grid>
-        <Label x:Name="label" Content="Power Source" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label1" Content="Level 1" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label1_Copy" Content="Level 2" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="powerCmb" HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top" Width="166" SelectedItem="{Binding PowerSource}"/>
-        <Slider x:Name="level1Slider" HorizontalAlignment="Left" Margin="189,51,0,0" VerticalAlignment="Top" Width="341" Value="{Binding Level1}"/>
-        <Slider x:Name="level2Slider" HorizontalAlignment="Left" Margin="189,82,0,0" VerticalAlignment="Top" Width="341" Value="{Binding Level2}"/>
-        <Label x:Name="level1Lbl" HorizontalAlignment="Left" Margin="607,41,0,0" VerticalAlignment="Top" Content="{Binding ElementName=level1Slider, Path=Value}"/>
-        <Label x:Name="level2Lbl" HorizontalAlignment="Left" Margin="607,72,0,0" VerticalAlignment="Top" Content="{Binding ElementName=level2Slider, Path=Value}"/>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="73*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+          Grid.Column="0"
+          Background="#2b5797" />
+
+        <Label x:Name="label_Copy33" Content="Custom Label" HorizontalAlignment="Right" Margin="0,0,222,0" VerticalAlignment="Center" Foreground="White" />
+        <TextBox x:Name="textBox" Height="22" Margin="0,0,32,0" TextWrapping="Wrap" HorizontalAlignment="Right" Width="175" Text="{Binding CustomLabel}"/>
+
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Test Configurations" Style="{DynamicResource MetroCircleButtonStyle}" Margin="10,0,0,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Center" Grid.Row="0" HorizontalAlignment="Left" Width="30">
+            <iconPacks:FontAwesome Width="10" Height="10" Kind="UploadSolid" />
+        </Button>
+
+        <Label x:Name="label" Content="Power Source" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label x:Name="label1" Content="Level 1" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label x:Name="label1_Copy" Content="Level 2" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <ComboBox x:Name="powerCmb" HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top" Width="166" SelectionChanged="powerCmb_SelectionChanged" Grid.Row="1"
+                  mah:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" mah:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF"/>        
+        
+
+        <Slider x:Name="level1Slider" HorizontalAlignment="Left" Margin="189,47,0,0" VerticalAlignment="Top" Value="{Binding Level1}" IsSnapToTickEnabled="True"
+                Width="271" mah:SliderHelper.TrackValueFillBrush="#FF2B5797" mah:SliderHelper.TrackFillPressedBrush="#FF2D89EF" mah:SliderHelper.TrackFillHoverBrush="#FF2D89EF" mah:SliderHelper.TrackFillBrush="#FF2D89EF" mah:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" mah:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" Grid.Row="1" Height="16" Maximum="30" LargeChange="0.1" TickFrequency="0.1"/>
+        
+        <Label x:Name="level1Lbl" HorizontalAlignment="Left" Margin="591,41,0,0" VerticalAlignment="Top" Content="{Binding ElementName=level1Slider, Path=Value}" Width="32" Grid.Row="1"/>
+        <Label x:Name="level2Lbl" HorizontalAlignment="Left" Margin="591,72,0,0" VerticalAlignment="Top" Content="{Binding ElementName=level2Slider, Path=Value}" Width="32" Grid.Row="1"/>
+
+        <Slider x:Name="level2Slider" HorizontalAlignment="Left" Margin="189,78,0,0" VerticalAlignment="Top" Value="{Binding Level2}" IsSnapToTickEnabled="True"
+            Width="271" mah:SliderHelper.TrackValueFillBrush="#FF2B5797" mah:SliderHelper.TrackFillPressedBrush="#FF2D89EF" mah:SliderHelper.TrackFillHoverBrush="#FF2D89EF" mah:SliderHelper.TrackFillBrush="#FF2D89EF" mah:SliderHelper.TrackValueFillHoverBrush="#FF2B5797" mah:SliderHelper.TrackValueFillPressedBrush="#FF2B5797" Grid.Row="1" Height="16" Maximum="30" LargeChange="0.1" TickFrequency="0.1"/>
 
     </Grid>
 </UserControl>

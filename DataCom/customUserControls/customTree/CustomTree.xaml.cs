@@ -23,24 +23,11 @@ namespace DataCom.customUserControls.customTree
     public partial class CustomTree : UserControl
     {
         private ECU ecu;
-        //public static readonly DependencyProperty SelectedOutputsProperty = DependencyProperty.Register
-        //    (
-        //         "SelectedOutputs",
-        //         typeof(EffectedOutput),
-        //         typeof(CustomTree),
-        //         new PropertyMetadata(new EffectedOutput())
-        //    );
-
-        //public EffectedOutput SelectedOutputs
-        //{
-        //    get { return (EffectedOutput)GetValue(SelectedOutputsProperty); }
-        //    set { SetValue(SelectedOutputsProperty, value); }
-        //}
-
         private EffectedOutput selectedOutputs;
         private ObservableCollection<Child> root;
-
-
+        private List<ECU> ecus;
+        private List<EffectedOutput> selectedOutputList;
+        private bool loadFullTree;
         public CustomTree()
         {
             InitializeComponent();
@@ -52,6 +39,7 @@ namespace DataCom.customUserControls.customTree
         {
             this.ecu = ecu;
             this.selectedOutputs = selectedOutputs;
+            loadFullTree = false;
             ObservableCollection<Child> positiveOutputs = new ObservableCollection<Child>();
             ObservableCollection<Child> negativeOutputs = new ObservableCollection<Child>();
 
@@ -93,18 +81,112 @@ namespace DataCom.customUserControls.customTree
             root.Add(negative);
         }
 
+        public void draw(List<ECU> ecus, List<EffectedOutput> selectedOutputs)
+        {
+            selectedOutputList = selectedOutputs;
+            this.ecus = ecus;
+            loadFullTree = true;
+            foreach (ECU item in ecus)
+            {
+                ObservableCollection<Child> positiveOutputs = new ObservableCollection<Child>();
+                ObservableCollection<Child> negativeOutputs = new ObservableCollection<Child>();
+                foreach (PositiveOutput pos in item.positiveList)
+                {
+                    Child child = new Child();
+                    child.Title = pos.Header.ToString();
+                    child.Index = pos.Index;
+                    child.mainBoardShortAddress = item.shortAddress;
+                    child.CheckedVisible = true;
+                    child.type = 1;
+                    var x = selectedOutputList.Find(y => y.ECUShortAddress == item.shortAddress);
+                    child.Checked = x == null ? false : x.PositiveOutputs.Any(y => y == child.Index);
+                    positiveOutputs.Add(child);
+                }
+                foreach (NegativeOutput neg in item.negativeList)
+                {
+                    Child child = new Child();
+                    child.Title = neg.Header.ToString();
+                    child.Index = neg.Index;
+                    child.CheckedVisible = true;
+                    child.mainBoardShortAddress = item.shortAddress;
+                    var x = selectedOutputList.Find(y => y.ECUShortAddress == item.shortAddress);
+                    child.Checked = x == null ? false : x.NegativeOutputs.Any(y => y == child.Index);
+                    child.type = 2;
+                    negativeOutputs.Add(child);
+                }
+
+                Child positive = new Child();
+                positive.Title = "Positive Outputs";
+                positive.CheckedVisible = false;
+                positive.Children = positiveOutputs;
+
+                Child negative = new Child();
+                negative.Title = "Negative Outputs";
+                negative.CheckedVisible = false;
+                negative.Children = negativeOutputs;
+
+                Child mainboard = new Child();
+                mainboard.Title = item.Header.ToString();
+                mainboard.Index = item.shortAddress;
+                mainboard.CheckedVisible = false;
+                //mainboard.Checked = selectedOutputList.Any(x => x.ECUShortAddress == item.shortAddress);
+                mainboard.type = 0;
+                mainboard.Children = new ObservableCollection<Child>();
+                mainboard.Children.Add(positive);                
+                mainboard.Children.Add(negative);
+                root.Add(mainboard);
+            }
+        }
+
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             var checkBox = e.OriginalSource as CheckBox;
             Child dataContext = checkBox?.DataContext as Child;
-            if (dataContext.type == 1)
+            if (loadFullTree)
             {
-                selectedOutputs.PositiveOutputs.Add(dataContext.Index);
+                if (dataContext.type == 1)
+                {
+                    var item = selectedOutputList.Find(x => x.ECUShortAddress == dataContext.mainBoardShortAddress);
+                    if(item == null)
+                    {
+                        EffectedOutput newOne = new EffectedOutput();
+                        newOne.ECUShortAddress = dataContext.mainBoardShortAddress;
+                        newOne.PositiveOutputs.Add(dataContext.Index);
+                        selectedOutputList.Add(newOne);                      
+                    }
+                    else
+                    {
+                        item.PositiveOutputs.Add(dataContext.Index);
+                    }                    
+                }
+                else if (dataContext.type == 2)
+                {
+                    var item = selectedOutputList.Find(x => x.ECUShortAddress == dataContext.mainBoardShortAddress);
+                    if (item == null)
+                    {
+                        EffectedOutput newOne = new EffectedOutput();
+                        newOne.ECUShortAddress = dataContext.mainBoardShortAddress;
+                        newOne.NegativeOutputs.Add(dataContext.Index);
+                        selectedOutputList.Add(newOne);
+                    }
+                    else
+                    {
+                        item.NegativeOutputs.Add(dataContext.Index);
+                    }
+                }
             }
-            else if (dataContext.type == 2)
+            else
             {
-                selectedOutputs.NegativeOutputs.Add(dataContext.Index);
+                if (dataContext.type == 1)
+                {
+                    selectedOutputs.PositiveOutputs.Add(dataContext.Index);
+                }
+                else if (dataContext.type == 2)
+                {
+                    selectedOutputs.NegativeOutputs.Add(dataContext.Index);
+                }
             }
+
 
         }
 
@@ -112,13 +194,27 @@ namespace DataCom.customUserControls.customTree
         {
             var checkBox = e.OriginalSource as CheckBox;
             Child dataContext = checkBox?.DataContext as Child;
-            if (dataContext.type == 1)
+            if (loadFullTree)
             {
-                selectedOutputs.PositiveOutputs.Remove(dataContext.Index);
+                if (dataContext.type == 1)
+                {
+                    selectedOutputList.Find(x => x.ECUShortAddress == dataContext.mainBoardShortAddress).PositiveOutputs.Remove(dataContext.Index);
+                }
+                else if (dataContext.type == 2)
+                {
+                    selectedOutputList.Find(x => x.ECUShortAddress == dataContext.mainBoardShortAddress).NegativeOutputs.Remove(dataContext.Index);
+                }
             }
-            else if (dataContext.type == 2)
+            else
             {
-                selectedOutputs.NegativeOutputs.Remove(dataContext.Index);
+                if (dataContext.type == 1)
+                {
+                    selectedOutputs.PositiveOutputs.Remove(dataContext.Index);
+                }
+                else if (dataContext.type == 2)
+                {
+                    selectedOutputs.NegativeOutputs.Remove(dataContext.Index);
+                }
             }
         }
     }

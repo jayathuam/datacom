@@ -1,4 +1,5 @@
 ﻿using DataCom.modals;
+using DataCom.SerialCommunication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +23,13 @@ namespace DataCom.customUserControls.customConfigs
     public partial class KeyPadUI : UserControl
     {
         private KeyPad keypad;
-        public KeyPadUI(KeyPad keypad)
+        private Serial serial;
+        public KeyPadUI(KeyPad keypad, Serial serial)
         {
             this.keypad = keypad;
+            this.serial = serial;
             InitializeComponent();
+            this.DataContext = keypad;
         }
 
         public void shortAddressUpdate_Click(Object sender, RoutedEventArgs e)

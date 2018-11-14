@@ -40,7 +40,9 @@ namespace DataCom.customUserControls.tree
             //TreeViewItem item = sender as TreeViewItem;           
             if (typeof(LoadShading).Equals((e.NewValue.GetType())))
             {
-                LoadShadingUI item = new LoadShadingUI((LoadShading)e.NewValue);
+                TreeViewItem x = (TreeViewItem)e.NewValue;
+                ECU ecu = (ECU) x.Parent;
+                LoadShadingUI item = new LoadShadingUI((LoadShading)e.NewValue, ecu, cmdHandler, serial);
                 item.Width = mainWindow.startupGrid.ActualWidth;
                 mainWindow.addChildToPanel(item);
             }
@@ -83,13 +85,13 @@ namespace DataCom.customUserControls.tree
             }
             else if (typeof(modals.Key).Equals((e.NewValue.GetType())))
             {
-                ButtonUI item = new ButtonUI((modals.Key)e.NewValue);
+                ButtonUI item = new ButtonUI((modals.Key)e.NewValue, globalData.dataComModal.ecus, serial); //todo: implement when data comming from the serial
                 item.Width = mainWindow.startupGrid.ActualWidth;
                 mainWindow.addChildToPanel(item);
             }
             else if (typeof(KeyPad).Equals((e.NewValue.GetType())))
             {
-                KeyPadUI item = new KeyPadUI((KeyPad)e.NewValue);
+                KeyPadUI item = new KeyPadUI((KeyPad)e.NewValue, serial);
                 item.Width = mainWindow.startupGrid.ActualWidth;
                 mainWindow.addChildToPanel(item);
             }

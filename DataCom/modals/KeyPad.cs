@@ -18,6 +18,7 @@ namespace DataCom.modals
         [JsonProperty]
         public string uuid { get; set; }
 
+        [JsonProperty]
         public int numOfKeys { get; set; }
 
         public KeyPad()
@@ -55,9 +56,16 @@ namespace DataCom.modals
             //keys = Enumerable.Repeat(new Key(), num).ToList();
             for (int i = 0; i < num; i++)
             {
-                Key item = new Key();
+                Key item = new Key(i);
                 keys.Add(item);
             }
+        }
+
+        [JsonProperty]
+        public string CustomLabel
+        {
+            get { return Header == null ? null : Header.ToString(); }
+            set { Header = value; }
         }
     }
 }

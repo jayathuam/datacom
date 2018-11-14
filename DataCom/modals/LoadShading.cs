@@ -12,46 +12,46 @@ namespace DataCom.modals
     [JsonObject(MemberSerialization.OptIn)]
     public class LoadShading: TreeViewItem
     {
-        private int _level1;
-        private int _level2;
-        private POWER_SOURCE _powersource;
+        private double _level1;
+        private double _level2;        
+
+        [JsonProperty]
+        public int PowerSource { get; set; }
 
         public LoadShading()
         {
             _level1 = 0;
-            _level2 = 0;
-            _powersource = POWER_SOURCE.value_1;
+            _level2 = 0;           
             Background = null;
         }
 
-        public LoadShading(int level1, int level2, POWER_SOURCE powersource, string header)
+        public LoadShading(int level1, int level2, string header)
         {
             this._level1 = level1;
-            this._level2 = level2;
-            this._powersource = powersource;
+            this._level2 = level2;            
             Background = null;
             Header = header;
         }
 
         [JsonProperty]
-        public int Level1
+        public double Level1
         {
             get { return _level1; }
             set { _level1 = value; }
         }
 
         [JsonProperty]
-        public int Level2
+        public double Level2
         {
             get { return _level2; }
             set { _level2 = value; }
-        }
+        }        
 
         [JsonProperty]
-        public POWER_SOURCE PowerSource
+        public string CustomLabel
         {
-            get { return _powersource; }
-            set { _powersource =  value; }
+            get { return Header == null ? null : Header.ToString(); }
+            set { Header = value; }
         }
 
 

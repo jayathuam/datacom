@@ -1,4 +1,5 @@
 ﻿using DataCom.modals;
+using DataCom.SerialCommunication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +24,25 @@ namespace DataCom.customUserControls.customConfigs
     public partial class LoadShadingUI : UserControl
     {
         private LoadShading loadShading;
-        public LoadShadingUI(LoadShading loadShading)
+        private ECU parent;
+        private CommandHandler cmdHandler;
+        private Serial serial;
+
+        public LoadShadingUI(LoadShading loadShading, ECU parent, CommandHandler cmdHandler, Serial serial)
         {
             InitializeComponent();
             this.loadShading = loadShading;
+            this.serial = serial;
+            this.cmdHandler = cmdHandler;
+            this.parent = parent;
             this.DataContext = loadShading;            
-            powerCmb.ItemsSource = Enum.GetValues(typeof(POWER_SOURCE));            
+            powerCmb.ItemsSource = parent.analogList.Select(o => o.Header.ToString()).ToList();
+            powerCmb.SelectedIndex = loadShading.PowerSource;
+        }
+
+        private void powerCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            loadShading.PowerSource = powerCmb.SelectedIndex;
         }
     }
 }

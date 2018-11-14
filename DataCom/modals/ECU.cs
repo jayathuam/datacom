@@ -135,5 +135,12 @@ namespace DataCom.modals
             loadShading = new LoadShading();
             powerManagement = new PowerManagement();
         }
+
+        [JsonProperty]
+        public string CustomLabel
+        {
+            get { return Header == null ? null : Header.ToString(); }
+            set { Header = value; }
+        }
     }
 }

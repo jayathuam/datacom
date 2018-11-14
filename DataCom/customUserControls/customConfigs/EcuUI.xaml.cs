@@ -26,6 +26,7 @@ namespace DataCom.customUserControls.customConfigs
         {
             this.ecu = ecu;
             InitializeComponent();
+            this.DataContext = ecu;
         }
 
         public void shortAddressUpdate_Click(Object sender, RoutedEventArgs e)

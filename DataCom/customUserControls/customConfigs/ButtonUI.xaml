@@ -4,10 +4,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DataCom.customUserControls.customConfigs"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+              xmlns:customTree="clr-namespace:DataCom.customUserControls.customTree"
              mc:Ignorable="d" 
              Width="auto" Height="auto">
     <Grid>
-        <Label x:Name="label1_Copy" Content="Target Action" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="targetActionCmb" HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top" Width="166"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="73*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+          Grid.Column="0"
+          Background="#2b5797" />
+
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Test Configurations" Style="{DynamicResource MetroCircleButtonStyle}" Margin="10,0,0,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Center" Grid.Row="0" HorizontalAlignment="Left" Width="30">
+            <iconPacks:FontAwesome Width="10" Height="10" Kind="UploadSolid" />
+        </Button>
+
+        <Label x:Name="label_Copy33" Content="Custom Label" HorizontalAlignment="Right" Margin="0,0,222,0" VerticalAlignment="Center" Foreground="White" />
+        <TextBox x:Name="textBox" Height="22" Margin="0,0,32,0" TextWrapping="Wrap" HorizontalAlignment="Right" Width="175" Text="{Binding CustomLabel}"/>
+
+        <Label x:Name="label1_Copy" Content="Target Action" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <ComboBox x:Name="targetActionCmb" HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top" Width="166" Grid.Row="1" SelectedItem="{Binding TargetAction}"/>
+
+        <customTree:CustomTree x:Name="cutomtree"   Grid.Row="1" Margin="189,48,0,0" Height="auto" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300"/>
+        <Label x:Name="label1_Copy1" Content="Effected Outputs" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="104"/>
+        
     </Grid>
 </UserControl>

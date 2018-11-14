@@ -5,17 +5,33 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DataCom.customUserControls.customConfigs"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" 
              mc:Ignorable="d" 
              Width="auto" Height="auto">
     <Grid>
-        <Label x:Name="label" Content="UUID" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label1" Content="Label Name" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label1_Copy" Content="Short Address" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="uuidLbl" Content="0" HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="shortAddressTxt" HorizontalAlignment="Left" Height="23" Margin="189,72,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="198"/>
-        <Button Command="{Binding EditDetailCommand}" ToolTip="Update short address" Style="{DynamicResource MetroCircleButtonStyle}" Margin="409,70,0,0" BorderBrush="Black" Foreground="Black" Height="30" VerticalAlignment="Top" Grid.Row="0" HorizontalAlignment="Left" Width="30" RenderTransformOrigin="0.133,0.333" Click="shortAddressUpdate_Click">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="73*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+          Grid.Column="0"
+          Background="#2b5797" />
+
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Test Configurations" Style="{DynamicResource MetroCircleButtonStyle}" Margin="10,0,0,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Center" Grid.Row="0" HorizontalAlignment="Left" Width="30">
             <iconPacks:FontAwesome Width="10" Height="10" Kind="UploadSolid" />
         </Button>
-        <TextBox x:Name="labelTxt" HorizontalAlignment="Left" Height="23" Margin="189,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="198"/>
+
+        <Label x:Name="label_Copy33" Content="Custom Label" HorizontalAlignment="Right" Margin="0,0,222,0" VerticalAlignment="Center" Foreground="White" />
+        <TextBox x:Name="textBox" Height="22" Margin="0,0,32,0" TextWrapping="Wrap" HorizontalAlignment="Right" Width="175" Text="{Binding CustomLabel}"/>
+
+        <Label x:Name="label" Content="UUID" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"  Grid.Row="1"/>
+        <Label x:Name="label1_Copy" Content="Short Address" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"  Grid.Row="1"/>
+        <Label x:Name="uuidLbl" Content="{Binding uuid}" HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top"  Grid.Row="1"/>
+        <Controls:NumericUpDown x:Name="shortAddress" Minimum = "0" Maximum = "100" Interval = "1" Width="166" Height="20" Margin="189,41,0,0" IsEnabled="{Binding ElementName=currEnable, Path=IsChecked}"
+            HorizontalAlignment="Left" VerticalAlignment="Top" NumericInputMode="Numbers" Value="{Binding shortAddress}" HasDecimals="False" Grid.Row="1" BorderBrush="#FF2D89EF"/>
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Update short address" Style="{DynamicResource MetroCircleButtonStyle}" Margin="409,39,0,0" BorderBrush="#FFEC4D4D" Foreground="#FFEC4D4D" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="30" RenderTransformOrigin="0.133,0.333" Click="shortAddressUpdate_Click" Grid.Row="1">
+            <iconPacks:FontAwesome Width="10" Height="10" Kind="UploadSolid" />
+        </Button>        
     </Grid>
 </UserControl>
