@@ -28,13 +28,7 @@ namespace DataCom.modals.enums
             value_1 = 1,
             value_2,
             value_3
-        }
-
-        public enum EXTERNAL_CONFIGS
-        {
-            Positive_Input = 1,
-            Negative_Input            
-        }
+        }        
 
         public enum OUTPUT_ACTIVATOR
         {
@@ -76,6 +70,31 @@ namespace DataCom.modals.enums
             Toggle,
             Push_On_Release_On,
             Push_Off_Release_On
+        }
+
+        public enum INPUT_SOURCE
+        {
+            Always_Off = 0,
+            Always_On,
+            Ext_Input,
+            Analog_Input,
+        }
+
+        public enum OPERATIONS
+        {
+            AND = 0,
+            OR,
+            XOR,
+            NAND,
+            NOR,
+            XNOR,
+        }
+
+        public enum EXT_CONFIGURATIONS
+        {
+            Unconfigured = 0,
+            Positive_Input,
+            Negative_Input
         }
     }
 }

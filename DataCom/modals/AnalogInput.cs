@@ -22,6 +22,9 @@ namespace DataCom.modals
         [JsonProperty]
         public int Index { get; set; }
 
+        [JsonProperty]
+        public bool EventDetection { get; set; }
+
         public AnalogInput(int index)
         {
             this.Index = index;

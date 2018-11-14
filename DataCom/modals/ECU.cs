@@ -110,7 +110,7 @@ namespace DataCom.modals
 
             for (int i = 0; i < external; i++)
             {
-                ExternalInput item = new ExternalInput();
+                ExternalInput item = new ExternalInput(i);
                 externalList.Add(item);
             }
 
@@ -122,7 +122,7 @@ namespace DataCom.modals
 
             for (int i = 0; i < combine; i++)
             {
-                CombineInputs item = new CombineInputs();
+                CombineInputs item = new CombineInputs(i);
                 combineList.Add(item);
             }
 

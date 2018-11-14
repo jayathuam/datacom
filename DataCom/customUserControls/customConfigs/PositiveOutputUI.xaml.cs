@@ -178,7 +178,7 @@ namespace DataCom.customUserControls.customConfigs
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            cmdHandler.cmdWritePosOutputConfigs(1, positiveOutput);
+            cmdHandler.cmdWritePosOutputConfigs((uint) parent.shortAddress, positiveOutput);
         }
 
         private void disableAllSourceElements()

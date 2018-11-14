@@ -23,24 +23,24 @@ namespace DataCom.customUserControls.customConfigs
     /// </summary>
     public partial class NegativeOutputUI : UserControl
     {
-        private NegativeOutput positiveOutput;
+        private NegativeOutput negativeOutput;
         private ECU parent;
         public List<string> IndexItems { get; set; }
         private CommandHandler cmdHandler;
         private Serial serial;
-        public NegativeOutputUI(NegativeOutput positiveOutput, ECU parent, CommandHandler cmdHandler, Serial serial)
+        public NegativeOutputUI(NegativeOutput negativeOutput, ECU parent, CommandHandler cmdHandler, Serial serial)
         {
             InitializeComponent();
-            this.positiveOutput = positiveOutput;
+            this.negativeOutput = negativeOutput;
             this.parent = parent;
             this.cmdHandler = cmdHandler;
             this.serial = serial;            
-            this.DataContext = positiveOutput;
+            this.DataContext = negativeOutput;
             IndexItems = new List<string>();
             activatorCmb.ItemsSource = Enum.GetValues(typeof(OUTPUT_ACTIVATOR));
             conditionSourceCmb.ItemsSource = Enum.GetValues(typeof(CONDITION_SOURCE));
             voltageSourceCmb.ItemsSource = parent.analogList.Select(o => o.Header.ToString()).ToList();
-            voltageSourceCmb.SelectedIndex = positiveOutput.VoltageSource;
+            voltageSourceCmb.SelectedIndex = negativeOutput.VoltageSource;
             loadShadingCmb.ItemsSource = Enum.GetValues(typeof(LOAD_SHADING));
         }
 
@@ -61,19 +61,19 @@ namespace DataCom.customUserControls.customConfigs
                 sourceIndexCMB.ItemsSource = IndexItems;
                 try
                 {
-                    sourceIndexCMB.SelectedItem = IndexItems[positiveOutput.SourceIndex];
+                    sourceIndexCMB.SelectedItem = IndexItems[negativeOutput.SourceIndex];
                 }
                 catch (ArgumentOutOfRangeException ex)
                 {
-                    positiveOutput.SourceIndex = 0;
-                    sourceIndexCMB.SelectedItem = IndexItems[positiveOutput.SourceIndex];
+                    negativeOutput.SourceIndex = 0;
+                    sourceIndexCMB.SelectedItem = IndexItems[negativeOutput.SourceIndex];
                 }
                 sourceOnCmb.ItemsSource = Enum.GetValues(typeof(SOURCE_CONDITIONS));
                 sourceOffCmb.ItemsSource = Enum.GetValues(typeof(SOURCE_CONDITIONS));
                 try
                 {
-                    sourceOnCmb.SelectedItem = (SOURCE_CONDITIONS)positiveOutput.TurnOnWhen;
-                    sourceOffCmb.SelectedItem = (SOURCE_CONDITIONS)positiveOutput.TurnOffWhen;
+                    sourceOnCmb.SelectedItem = (SOURCE_CONDITIONS)negativeOutput.TurnOnWhen;
+                    sourceOffCmb.SelectedItem = (SOURCE_CONDITIONS)negativeOutput.TurnOffWhen;
                     if (sourceOnCmb.SelectedItem == null || sourceOffCmb.SelectedItem == null)
                     {
                         throw new ArgumentOutOfRangeException();
@@ -81,10 +81,10 @@ namespace DataCom.customUserControls.customConfigs
                 }
                 catch (ArgumentOutOfRangeException ex)
                 {
-                    positiveOutput.TurnOnWhen = 0;
-                    positiveOutput.TurnOffWhen = 0;
-                    sourceOnCmb.SelectedItem = (SOURCE_CONDITIONS)positiveOutput.TurnOnWhen;
-                    sourceOffCmb.SelectedItem = (SOURCE_CONDITIONS)positiveOutput.TurnOffWhen;
+                    negativeOutput.TurnOnWhen = 0;
+                    negativeOutput.TurnOffWhen = 0;
+                    sourceOnCmb.SelectedItem = (SOURCE_CONDITIONS)negativeOutput.TurnOnWhen;
+                    sourceOffCmb.SelectedItem = (SOURCE_CONDITIONS)negativeOutput.TurnOffWhen;
                 }
 
 
@@ -98,18 +98,18 @@ namespace DataCom.customUserControls.customConfigs
                 sourceIndexCMB.ItemsSource = IndexItems;
                 try
                 {
-                    sourceIndexCMB.SelectedItem = IndexItems[positiveOutput.SourceIndex];
-                    turnOffSlider.Value = positiveOutput.TurnOffWhen / 1000.0;
-                    turnOnSlider.Value = positiveOutput.TurnOnWhen / 1000.0;
+                    sourceIndexCMB.SelectedItem = IndexItems[negativeOutput.SourceIndex];
+                    turnOffSlider.Value = negativeOutput.TurnOffWhen / 1000.0;
+                    turnOnSlider.Value = negativeOutput.TurnOnWhen / 1000.0;
                 }
                 catch (ArgumentOutOfRangeException ex)
                 {
-                    positiveOutput.SourceIndex = 0;
-                    positiveOutput.TurnOffWhen = 0;
-                    positiveOutput.TurnOnWhen = 0;
-                    turnOffSlider.Value = positiveOutput.TurnOffWhen;
-                    turnOnSlider.Value = positiveOutput.TurnOnWhen;
-                    sourceIndexCMB.SelectedItem = IndexItems[positiveOutput.SourceIndex];
+                    negativeOutput.SourceIndex = 0;
+                    negativeOutput.TurnOffWhen = 0;
+                    negativeOutput.TurnOnWhen = 0;
+                    turnOffSlider.Value = negativeOutput.TurnOffWhen;
+                    turnOnSlider.Value = negativeOutput.TurnOnWhen;
+                    sourceIndexCMB.SelectedItem = IndexItems[negativeOutput.SourceIndex];
                 }
             }
             else if (item == CONDITION_SOURCE.CombineInput)
@@ -121,19 +121,19 @@ namespace DataCom.customUserControls.customConfigs
                 sourceIndexCMB.ItemsSource = IndexItems;
                 try
                 {
-                    sourceIndexCMB.SelectedItem = IndexItems[positiveOutput.SourceIndex];
+                    sourceIndexCMB.SelectedItem = IndexItems[negativeOutput.SourceIndex];
                 }
                 catch (ArgumentOutOfRangeException ex)
                 {
-                    positiveOutput.SourceIndex = 0;
-                    sourceIndexCMB.SelectedItem = IndexItems[positiveOutput.SourceIndex];
+                    negativeOutput.SourceIndex = 0;
+                    sourceIndexCMB.SelectedItem = IndexItems[negativeOutput.SourceIndex];
                 }
                 sourceOnCmb.ItemsSource = Enum.GetValues(typeof(SOURCE_CONDITIONS));
                 sourceOffCmb.ItemsSource = Enum.GetValues(typeof(SOURCE_CONDITIONS));
                 try
                 {
-                    sourceOnCmb.SelectedItem = (SOURCE_CONDITIONS)positiveOutput.TurnOnWhen;
-                    sourceOffCmb.SelectedItem = (SOURCE_CONDITIONS)positiveOutput.TurnOffWhen;
+                    sourceOnCmb.SelectedItem = (SOURCE_CONDITIONS)negativeOutput.TurnOnWhen;
+                    sourceOffCmb.SelectedItem = (SOURCE_CONDITIONS)negativeOutput.TurnOffWhen;
                     if (sourceOnCmb.SelectedItem == null || sourceOffCmb.SelectedItem == null)
                     {
                         throw new ArgumentOutOfRangeException();
@@ -141,10 +141,10 @@ namespace DataCom.customUserControls.customConfigs
                 }
                 catch (ArgumentOutOfRangeException ex)
                 {
-                    positiveOutput.TurnOnWhen = 0;
-                    positiveOutput.TurnOffWhen = 0;
-                    sourceOnCmb.SelectedItem = (SOURCE_CONDITIONS)positiveOutput.TurnOnWhen;
-                    sourceOffCmb.SelectedItem = (SOURCE_CONDITIONS)positiveOutput.TurnOffWhen;
+                    negativeOutput.TurnOnWhen = 0;
+                    negativeOutput.TurnOffWhen = 0;
+                    sourceOnCmb.SelectedItem = (SOURCE_CONDITIONS)negativeOutput.TurnOnWhen;
+                    sourceOffCmb.SelectedItem = (SOURCE_CONDITIONS)negativeOutput.TurnOffWhen;
                 }
             }
             else if (item == CONDITION_SOURCE.Event)
@@ -155,30 +155,30 @@ namespace DataCom.customUserControls.customConfigs
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            cmdHandler.cmdWriteNegativeOutputConfigs((uint)parent.shortAddress, negativeOutput);
+        }
+
         private void sourceIndexCMB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            positiveOutput.SourceIndex = sourceIndexCMB.SelectedIndex;
+            negativeOutput.SourceIndex = sourceIndexCMB.SelectedIndex;
         }
 
         private void sourceOnCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            positiveOutput.TurnOnWhen = sourceOnCmb.SelectedIndex;
+            negativeOutput.TurnOnWhen = sourceOnCmb.SelectedIndex;
         }
 
         private void sourceOffCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            positiveOutput.TurnOffWhen = sourceOffCmb.SelectedIndex;
+            negativeOutput.TurnOffWhen = sourceOffCmb.SelectedIndex;
         }
 
         private void voltageSourceCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            positiveOutput.VoltageSource = voltageSourceCmb.SelectedIndex;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //cmdHandler.cmdWritePosOutputConfigs(1, NegativeOutput); // add the correct one
-        }
+            negativeOutput.VoltageSource = voltageSourceCmb.SelectedIndex;
+        }       
 
         private void disableAllSourceElements()
         {
@@ -226,12 +226,12 @@ namespace DataCom.customUserControls.customConfigs
 
         private void turnOffSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            positiveOutput.TurnOffWhen = Convert.ToInt16(e.NewValue * 1000.0);
+            negativeOutput.TurnOffWhen = Convert.ToInt16(e.NewValue * 1000.0);
         }
 
         private void turnOnSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            positiveOutput.TurnOnWhen = Convert.ToInt16(e.NewValue * 1000.0);
+            negativeOutput.TurnOnWhen = Convert.ToInt16(e.NewValue * 1000.0);
         }       
     }
 }

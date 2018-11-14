@@ -56,7 +56,9 @@ namespace DataCom.customUserControls.tree
             }
             else if (typeof(ExternalInput).Equals((e.NewValue.GetType())))
             {
-                ExternalInputUI item = new ExternalInputUI((ExternalInput)e.NewValue);
+                TreeViewItem x = (TreeViewItem)e.NewValue;
+                ECU ecu = (ECU)((TreeViewItem)x.Parent).Parent;
+                ExternalInputUI item = new ExternalInputUI((ExternalInput)e.NewValue, ecu, serial);
                 item.Width = mainWindow.startupGrid.ActualWidth;
                 mainWindow.addChildToPanel(item);
             }
@@ -79,7 +81,9 @@ namespace DataCom.customUserControls.tree
             }
             else if (typeof(CombineInputs).Equals((e.NewValue.GetType())))
             {
-                CombineInputUI item = new CombineInputUI((CombineInputs)e.NewValue);
+                TreeViewItem x = (TreeViewItem)e.NewValue;
+                ECU ecu = (ECU)((TreeViewItem)x.Parent).Parent;
+                CombineInputUI item = new CombineInputUI((CombineInputs)e.NewValue, ecu, serial);
                 item.Width = mainWindow.startupGrid.ActualWidth;
                 mainWindow.addChildToPanel(item);
             }

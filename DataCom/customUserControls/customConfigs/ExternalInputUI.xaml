@@ -4,14 +4,41 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DataCom.customUserControls.customConfigs"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:customTree="clr-namespace:DataCom.customUserControls.customTree"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
              Height="auto" Width="auto">
     <Grid>
-        <Label x:Name="label" Content="Configuration" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>       
-        <Label x:Name="label1_Copy" Content="Target Action" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="configsCmb" HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top" Width="166"/>
-        <CheckBox x:Name="eventDetectionCheck" Content="Event Detection" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="targetActionCmb" HorizontalAlignment="Left" Margin="189,72,0,0" VerticalAlignment="Top" Width="166"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="73*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+          Grid.Column="0"
+          Background="#2b5797" />
+
+        <Label x:Name="label_Copy33" Content="Custom Label" HorizontalAlignment="Right" Margin="0,0,222,0" VerticalAlignment="Center" Foreground="White" />
+        <TextBox x:Name="textBox" Height="22" Margin="0,0,32,0" TextWrapping="Wrap" HorizontalAlignment="Right" Width="175" Text="{Binding CustomLabel}"/>
+
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Test Configurations" Style="{DynamicResource MetroCircleButtonStyle}" Margin="10,0,0,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Center" Grid.Row="0" HorizontalAlignment="Left" Width="30">
+            <iconPacks:FontAwesome Width="10" Height="10" Kind="UploadSolid" />
+        </Button>
+
+        <Label x:Name="label" Content="Configuration" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label x:Name="label1_Copy" Content="Target Action" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <ComboBox x:Name="configsCmb" HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top" Width="166"
+                  mah:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" mah:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF" Grid.Row="1" Height="26"
+                  SelectedItem="{Binding Configuration}"/>
+        <CheckBox x:Name="eventDetection" Content="Event Detection" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" 
+                  IsChecked="{Binding EventDetection}" Grid.Row="1"/>
+        <ComboBox x:Name="targetActionCmb" HorizontalAlignment="Left" Margin="189,41,0,0" VerticalAlignment="Top" 
+                  Width="166" SelectedItem="{Binding TargetAction}"
+                  mah:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" mah:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF" Grid.Row="1" Height="26"/>
+
+        <customTree:CustomTree x:Name="cutomtree"   Grid.Row="1" Margin="189,102,0,0" Height="auto" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300"/>
+        <Label x:Name="label1_Copy1" Content="Effected Outputs" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="104"/>
 
     </Grid>
 </UserControl>

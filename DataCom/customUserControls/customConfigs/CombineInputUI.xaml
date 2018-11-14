@@ -4,27 +4,60 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DataCom.customUserControls.customConfigs"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:customTree="clr-namespace:DataCom.customUserControls.customTree"
              mc:Ignorable="d" 
              Width="auto" Height="auto">
     <Grid>
-        <Label x:Name="label" Content="Input Source 1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label1_Copy" Content="Category Source" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="inputSource1Cmb" HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top" Width="166"/>
-        <ComboBox x:Name="categorySource1cmb" HorizontalAlignment="Left" Margin="189,41,0,0" VerticalAlignment="Top" Width="166"/>
-        <Label x:Name="label1_Copy1" Content="Minimum" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label1_Copy2" Content="Maximum" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="min1" HorizontalAlignment="Left" Height="23" Margin="189,72,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-        <TextBox x:Name="max1" HorizontalAlignment="Left" Height="23" Margin="189,103,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-        <Label x:Name="label1_Copy3" Content="Operation" HorizontalAlignment="Left" Margin="10,189,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="inputSource1Cmb_Copy" HorizontalAlignment="Left" Margin="189,189,0,0" VerticalAlignment="Top" Width="166"/>
-        <Label x:Name="label_Copy" Content="Input Source 2" HorizontalAlignment="Left" Margin="10,273,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label1_Copy4" Content="Category Source" HorizontalAlignment="Left" Margin="10,304,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="inputSource2Cmb" HorizontalAlignment="Left" Margin="189,273,0,0" VerticalAlignment="Top" Width="166"/>
-        <ComboBox x:Name="categorySource2cmb" HorizontalAlignment="Left" Margin="189,304,0,0" VerticalAlignment="Top" Width="166"/>
-        <Label x:Name="label1_Copy5" Content="Minimum" HorizontalAlignment="Left" Margin="10,335,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label1_Copy6" Content="Maximum" HorizontalAlignment="Left" Margin="10,366,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="min2" HorizontalAlignment="Left" Height="23" Margin="189,335,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-        <TextBox x:Name="max2" HorizontalAlignment="Left" Height="23" Margin="189,366,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="73*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+          Grid.Column="0"
+          Background="#2b5797" />
+
+        <Button Command="{Binding EditDetailCommand}" ToolTip="Test Configurations" Style="{DynamicResource MetroCircleButtonStyle}" Margin="10,0,0,0" BorderBrush="White" Foreground="White" Height="30" VerticalAlignment="Center" Grid.Row="0" HorizontalAlignment="Left" Width="30">
+            <iconPacks:FontAwesome Width="10" Height="10" Kind="UploadSolid" />
+        </Button>
+        <Label x:Name="label_Copy33" Content="Custom Label" HorizontalAlignment="Right" Margin="0,0,222,0" VerticalAlignment="Center" Foreground="White" />
+        <TextBox x:Name="textBox" Height="22" Margin="0,0,32,0" TextWrapping="Wrap" HorizontalAlignment="Right" Width="175" Text="{Binding CustomLabel}"/>
+
+        <Label x:Name="label" Content="Input 1 Source" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label x:Name="label1_Copy" Content="Input 1 index" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <ComboBox x:Name="index1Cmb" HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top" Width="166" Grid.Row="1" SelectionChanged="index1Cmb_SelectionChanged"
+                  mah:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" mah:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF" SelectedItem="{Binding InputSource1}"/>
+        
+        <ComboBox x:Name="categorySource1cmb" HorizontalAlignment="Left" Margin="189,41,0,0" VerticalAlignment="Top" Width="166" Grid.Row="1"
+                  mah:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" mah:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF"/>
+        
+        <Label x:Name="label1_Copy3" Content="Operation" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <ComboBox x:Name="operationCmb" HorizontalAlignment="Left" Margin="189,95,0,0" VerticalAlignment="Top" Width="166" Grid.Row="1" SelectedItem="{Binding Operation}"
+                  mah:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" mah:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF"/>
+        
+        <CheckBox x:Name="inverted1" Content="Input 1 is inverted" HorizontalAlignment="Left" Margin="14,72,0,0" VerticalAlignment="Top" Width="139" Grid.Row="1"
+                  IsChecked="{Binding Inverted1}"/>
+        <Label x:Name="label_Copy1" Content="Input 2 Source" HorizontalAlignment="Left" Margin="10,126,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label x:Name="label1_Copy1" Content="Input 2 index" HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <ComboBox x:Name="index2Cmb" HorizontalAlignment="Left" Margin="189,126,0,0" VerticalAlignment="Top" Width="166" Grid.Row="1" SelectedItem="{Binding InputSource1}"
+                  mah:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" mah:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF" SelectionChanged="index2Cmb_SelectionChanged"/>
+
+        <ComboBox x:Name="categorySource2cmb" HorizontalAlignment="Left" Margin="189,157,0,0" VerticalAlignment="Top" Width="166" Grid.Row="1"
+                  mah:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" mah:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF"/>
+        
+        <CheckBox x:Name="inverted2" Content="Input 2 is inverted" HorizontalAlignment="Left" Margin="10,188,0,0" VerticalAlignment="Top" Width="139" Grid.Row="1"
+                   IsChecked="{Binding Inverted2}"/>
+        <CheckBox x:Name="eventDetection" Content="Event Detection" HorizontalAlignment="Left" Margin="10,211,0,0" VerticalAlignment="Top" Width="139" Grid.Row="1"
+                   IsChecked="{Binding EventDetection}"/>
+
+        <Label x:Name="targetLBL" Content="Target Action" HorizontalAlignment="Left" Margin="10,234,0,0" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="80"/>
+        <ComboBox x:Name="targetActionCmb" HorizontalAlignment="Left" Margin="189,234,0,0" VerticalAlignment="Top" Width="166" SelectedItem="{Binding TargetAction}"
+                  mah:ControlsHelper.MouseOverBorderBrush="#FF2D89EF" mah:ControlsHelper.FocusBorderBrush="#FF2B5797" BorderBrush="#FF2D89EF" Grid.Row="1" Height="26"/>
+
+        <Label x:Name="cusTreeLBL" Content="Effected Outputs" HorizontalAlignment="Left" Margin="0,265,0,0" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="104"/>
+        <customTree:CustomTree x:Name="cutomtree"   Grid.Row="1" Margin="189,273,0,0" Height="auto" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300"/>
 
     </Grid>
 </UserControl>

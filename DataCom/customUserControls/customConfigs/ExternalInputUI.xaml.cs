@@ -1,4 +1,5 @@
 ﻿using DataCom.modals;
+using DataCom.SerialCommunication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +24,18 @@ namespace DataCom.customUserControls.customConfigs
     public partial class ExternalInputUI : UserControl
     {
         private ExternalInput externalInput;
-        public ExternalInputUI(ExternalInput externalInput)
+        private ECU ecu;
+        private Serial serial;
+        public ExternalInputUI(ExternalInput externalInput, ECU ecu, Serial serial)
         {
             InitializeComponent();
             this.externalInput = externalInput;
-            configsCmb.ItemsSource = Enum.GetValues(typeof(EXTERNAL_CONFIGS));
-            configsCmb.SelectedItem = (EXTERNAL_CONFIGS)1;
+            this.serial = serial;
+            this.ecu = ecu;
+            this.DataContext = externalInput;
+            configsCmb.ItemsSource = Enum.GetValues(typeof(EXT_CONFIGURATIONS));
+            targetActionCmb.ItemsSource = Enum.GetValues(typeof(TARGET_ACTION));
+            cutomtree.draw(ecu, externalInput.SelectedOutputs);
         }
     }
 }

@@ -99,12 +99,7 @@ namespace DataCom.SerialCommunication
             logger.Info("read negative output configs", tl_packet);
         }
 
-        public void cmdWriteNegativeOutputConfigs(uint seleectedShortAddess, int negativeOutIdx,
-                                                    uint activaotr, uint keypadId, uint buttonId,
-                                                    uint action_for_activator, uint under_voltage,
-                                                    uint UV_frequency, uint UV_blink_count, int UVbrightness,
-                                                    uint poweSource
-                                                 )
+        public void cmdWriteNegativeOutputConfigs(uint seleectedShortAddess, NegativeOutput negative)
         {
             CANPacket packet = new CANPacket();
             packet.Packet_type = CANPacket.Pkt_Type_t.Pkt_Type_Command;
@@ -112,23 +107,66 @@ namespace DataCom.SerialCommunication
             packet.Source_address = 0;
             packet.Destination_address = seleectedShortAddess;
             packet.Length = 0;
-            packet.Buffer[packet.Length++] = (byte)negativeOutIdx;
-            packet.Buffer[packet.Length++] = (byte)activaotr;
-            packet.Buffer[packet.Length++] = (byte)keypadId;
-            packet.Buffer[packet.Length++] = (byte)buttonId;
-            packet.Buffer[packet.Length++] = (byte)action_for_activator;
-            packet.Buffer[packet.Length++] = (byte)(under_voltage >> 8);
-            packet.Buffer[packet.Length++] = (byte)(under_voltage & 0xFF);
-            packet.Buffer[packet.Length++] = (byte)UV_frequency;
-            packet.Buffer[packet.Length++] = (byte)UV_blink_count;
-            packet.Buffer[packet.Length++] = (byte)UVbrightness;
-            packet.Buffer[packet.Length++] = (byte)poweSource;
 
+            packet.Buffer[packet.Length++] = (byte)negative.Index;
+
+            packet.Buffer[packet.Length++] = (byte)negative.Activator;
+            packet.Buffer[packet.Length++] = (byte)((negative.ActiveTime >> 8) & 0xFF);
+            packet.Buffer[packet.Length++] = (byte)(negative.ActiveTime & 0xFF);
+            packet.Buffer[packet.Length++] = (byte)((negative.StartupDelay >> 8) & 0xFF);
+            packet.Buffer[packet.Length++] = (byte)(negative.StartupDelay & 0xFF);
+
+
+            // Activate conditions       
+            packet.Buffer[packet.Length++] = (byte)negative.ConditionSource;
+            packet.Buffer[packet.Length++] = (byte)negative.SourceIndex;
+            packet.Buffer[packet.Length++] = (byte)((negative.TurnOnWhen >> 8) & 0xFF);
+            packet.Buffer[packet.Length++] = (byte)(negative.TurnOnWhen & 0xFF);
+            packet.Buffer[packet.Length++] = (byte)((negative.TurnOffWhen >> 8) & 0xFF);
+            packet.Buffer[packet.Length++] = (byte)(negative.TurnOffWhen & 0xFF);
+            // TODO:Fix this
+            packet.Buffer[packet.Length++] = (byte)negative.LEDOutputErrFreq;
+            packet.Buffer[packet.Length++] = (byte)negative.LEDOutputErrBlink;
+            packet.Buffer[packet.Length++] = (byte)negative.LEDOutputErrBright;
+
+
+            // Voltage monitoring            
+            packet.Buffer[packet.Length++] = Convert.ToByte(negative.VoltageMonitor);
+            packet.Buffer[packet.Length++] = (byte)negative.VoltageSource;
+            UInt16 minVoltage = (UInt16)(negative.MinVoltage * 1000.0);
+            packet.Buffer[packet.Length++] = (byte)((minVoltage >> 8) & 0xFF);
+            packet.Buffer[packet.Length++] = (byte)(minVoltage & 0xFF);
+            UInt16 maxVoltage = (UInt16)(negative.MaxVoltage * 1000.0);
+            packet.Buffer[packet.Length++] = (byte)((maxVoltage >> 8) & 0xFF);
+            packet.Buffer[packet.Length++] = (byte)(maxVoltage & 0xFF);
+            packet.Buffer[packet.Length++] = (byte)negative.LEDUnderVoltageFreq;
+            packet.Buffer[packet.Length++] = (byte)negative.LEDUnderVoltageBlink;
+            packet.Buffer[packet.Length++] = (byte)negative.LEDUnderVoltageBright;
+            packet.Buffer[packet.Length++] = (byte)negative.LEDOverVoltageFreq;
+            packet.Buffer[packet.Length++] = (byte)negative.LEDOverVoltageBlink;
+            packet.Buffer[packet.Length++] = (byte)negative.LEDOverVoltageBright;
+
+            // Current monitoring             
+            packet.Buffer[packet.Length++] = 0;
+            packet.Buffer[packet.Length++] = 0;
+            packet.Buffer[packet.Length++] = 0;
+            packet.Buffer[packet.Length++] = 0;
+            packet.Buffer[packet.Length++] = 0;
+            packet.Buffer[packet.Length++] = 0;
+            packet.Buffer[packet.Length++] = 0;
+            packet.Buffer[packet.Length++] = 0;
+            packet.Buffer[packet.Length++] = 0;
+            packet.Buffer[packet.Length++] = 0;
+            packet.Buffer[packet.Length++] = 0;
+
+            // Load shading
+            packet.Buffer[packet.Length++] = (byte)negative.LoadShading;
 
             TL_Packet tl_packet = new TL_Packet();
             canInterface.EncodePacket(ref packet, ref tl_packet);
-            transportLayer.SendPacket(ref tl_packet);
-            logger.Info("write negative output configs", tl_packet);
+            //transportLayer.SendPacket(ref tl_packet);
+            serial.sendMessage(transportLayer.SendPacket(ref tl_packet));
+            logger.Info("Write negative output configs", tl_packet);
         }
 
         public void cmdReadPosOutCurrent(uint seleectedShortAddess, int analogInputIndx)
@@ -173,13 +211,13 @@ namespace DataCom.SerialCommunication
             packet.Buffer[packet.Length++] = (byte)((positive.TurnOffWhen >> 8) & 0xFF);
             packet.Buffer[packet.Length++] = (byte)(positive.TurnOffWhen & 0xFF);
             // TODO:Fix this
-            packet.Buffer[packet.Length++] = 0;//byte)positive.led_settings_condition_mismatch.frequency;
-            packet.Buffer[packet.Length++] = 0;//byte)positive.led_settings_condition_mismatch.blink_count;
-            packet.Buffer[packet.Length++] = 0;//(byte)positive.led_settings_condition_mismatch.brightness;
+            packet.Buffer[packet.Length++] = (byte)positive.LEDOutputErrFreq;
+            packet.Buffer[packet.Length++] = (byte)positive.LEDOutputErrBlink;
+            packet.Buffer[packet.Length++] = (byte)positive.LEDOutputErrBright;
 
 
             // Voltage monitoring            
-            packet.Buffer[packet.Length++] = 0;//(byte)positive.voltage_monitoring_enabled;
+            packet.Buffer[packet.Length++] = Convert.ToByte(positive.VoltageMonitor);
             packet.Buffer[packet.Length++] = (byte)positive.VoltageSource;
             UInt16 minVoltage = (UInt16)(positive.MinVoltage * 1000.0);
             packet.Buffer[packet.Length++] = (byte)((minVoltage >> 8) & 0xFF);
@@ -195,7 +233,7 @@ namespace DataCom.SerialCommunication
             packet.Buffer[packet.Length++] = (byte)positive.LEDOverVoltageBright;
 
             // Current monitoring             
-            packet.Buffer[packet.Length++] = 0;// (byte)positive.current_monitoring_enabled;
+            packet.Buffer[packet.Length++] = Convert.ToByte(positive.CurrentMonitor);
             packet.Buffer[packet.Length++] = (byte)((positive.MinimumCurrent >> 8) & 0xFF);
             packet.Buffer[packet.Length++] = (byte)(positive.MinimumCurrent & 0xFF);
             packet.Buffer[packet.Length++] = (byte)((positive.MaxCurrent >> 8) & 0xFF);
